@@ -30,23 +30,13 @@ exports.signUp = function(req,res){
 		}
 		else{	
 			console.log(data);
-<<<<<<< HEAD
-
-			res.render("homepage");
-
-=======
->>>>>>> 033e9f3bbeabdb3e6d3277bfcfe0b48c5b201a51
 			req.session.userId = data.insertId;
 			if(userType === "U"){
-				 res.render("homepage",{user:req.session.userId});
+				 res.render("homepage",{user:req.session.userId,lastLoggedIn:""});
 			}
 			else if(userType === "C"){
 				res.render('companyhomepage');  
 			}
-<<<<<<< HEAD
-
-=======
->>>>>>> 033e9f3bbeabdb3e6d3277bfcfe0b48c5b201a51
 		}
 	});
 }
@@ -66,8 +56,7 @@ exports.signIn = function(req,res){
 				req.session.userId = data[0].user_Id;
 				if(data[0].user_type === "U"){
 					console.log("USer has signed in");
-					
-					res.render('homepage',{user:req.session.userId}); // render Newsfeed page for user			
+					res.render('homepage',{user:req.session.userId,lastLoggedIn : data[0].lastLoggedIn }); // render Newsfeed page for user			
 				}
 				else if(data.user_type == "C"){
 					req.session.companyId = data[0].user_Id;
