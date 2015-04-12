@@ -7,8 +7,8 @@ var pool = conn.getPoolInstance();
 exports.signUp = function(email, password, firstName, lastName,userType, callback) {
 
 	var query = "insert into users "
-			+ "(firstname,lastname,email,password,user_type)"
-			+ "values (?,?,?,?,?);";
+			+ "(firstname,lastname,email,password,user_type,lastLoggedIn)"
+			+ "values (?,?,?,?,?,now());";
 	pool.getConnection(function(err, connection) {
 		connection.query(query, [ firstName, lastName, email, password,userType],
 				function(regerr, rows) {
@@ -28,18 +28,33 @@ exports.signUp = function(email, password, firstName, lastName,userType, callbac
 exports.signIn = function(userName, password, callback) {
 
 	console.log("USERNAME: " + userName + " Password: " + password);
-	var sql = 'SELECT firstname,lastname,user_Id,user_type FROM users where email = ? and password = ?';
+	var sql = 'SELECT firstname,lastname,user_Id,user_type,lastLoggedIn FROM users where email = ? and password = ?';
 	console.log(sql);
+	var authResults;
 	pool.getConnection(function(err, connection) {
 		connection.query(sql, [ userName, password ], function(err, rows) {
 			console.log(rows);
-			if (rows.length !== 0) {
-				callback(err, rows);
-
-			} else {
-				console.log("no user with this credentials");
-				callback(err, rows);
+			authResults = rows;
+			if(err){
+				pool.releaseConnection(connection);
+				console.log("ERROR: " + err.message);
 			}
+			else{
+				
+				if (rows.length !== 0) {
+					var updateLoginTimeSql = "update users set lastLoggedIn = now() where user_id="+rows[0].user_id;
+					connection.query(updateLoginTimeSql,function(){
+						pool.releaseConnection(connection);
+						callback(err,authResults);
+					});
+				} else {
+					console.log("no user with this credentials");
+					pool.releaseConnection(connection);
+					callback(err, rows);
+				}
+				
+			}
+			
 		});
 
 	});
