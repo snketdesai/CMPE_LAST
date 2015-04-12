@@ -39,7 +39,7 @@
 	<div class="navbar navbar-default" id="subnav">
       <div class="col-md-12">
           <div class = "navbar-header">
-          <a href="" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+          <a href="/homePage" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
           <ul class="nav dropdown-menu">
               <li id="profile"><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
              <!-- <li><a href="#"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> Dashboard</a></li>-->
@@ -144,8 +144,68 @@
 	<!--/main-->
 
 	<!-- script references -->
-	<script type="text/javascript"></script>
-	<script src="js/ajaxCallUserSearch.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		      $("#cName").autocomplete({
+			delay: 500,
+			minLength: 3,
+			source: function(request, response) {
+				var autocompleteQuery = {
+			    	query : $("#cName").val()
+	    	    };
+				$.ajax({
+		    		  type: "POST",
+		              url: "/company/autocompletelist",
+		              contentType: "application/json; charset=UTF-8",
+		              data: JSON.stringify(autocompleteQuery),
+		              crossDomain : true,
+		              success: function( d ) {
+		            	  response(d);
+		              }
+		    	 });
+			},
+			focus: function(event, ui) {
+				event.preventDefault();
+			},
+			select: function(event, ui) {
+				event.preventDefault();
+				window.location = '/companyprofilepagename/'+ui.item.value;
+			}
+		});
+      
+      $( "#companySearch" ).click(function() {
+          var name = $('#cName').val();
+          console.log(name);
+          var companyname = {
+        	  name : name
+          };
+          
+          $.ajax({
+            type: "POST",
+            url: "/company/companylist",
+            contentType: "application/json; charset=UTF-8",
+            dataType: 'json',
+            data: JSON.stringify(companyname),
+            crossDomain : true,
+            success: function( d ) {
+               var html = '';
+               html += '<div class="panel panel-default">';
+               html += '<div class="panel-heading">';
+               html += '<table class="table"><thead><tr><th>Company Name</th><th>Overview</th></tr></thead><tbody>';
+               for(i=0;i<d.length;i++){
+            	   html += '<tr class="clickable-row" data-href="/companyprofilepagename/'+d[i].name+'"><td>'+d[i].name+'</td><td>'+d[i].overview+'</td></tr>';
+               }      
+               html += ' </tbody></table></div></div>';
+               
+               $('#cprofile').append(html);
+               $(".clickable-row").click(function() {
+                   window.location = $(this).data("href");
+               });
+            }
+          });
+       });
+     });
 	</script>
+	<script src="js/ajaxCallUserSearch.js"></script>
 </body>
 </html>

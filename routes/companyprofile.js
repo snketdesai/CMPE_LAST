@@ -66,6 +66,7 @@ exports.insertCompanyProfile = function(req,res){
 
 exports.changeCompanyLogo = function(req,res){
 	var companyId = parseInt(req.params.companyId);
+
 	fs.readFile(req.files.logo.path, function (err, data) {
 	  fs.writeFile("./public/uploads/"+req.files.logo.name, data, function (err) {
 		  cprofile.updateCompanyLogo(req, res, "./uploads/"+req.files.logo.name, companyId, req.body.cId);
@@ -74,7 +75,6 @@ exports.changeCompanyLogo = function(req,res){
 }
 
 exports.updateCompanyLogo = function(req, res, path, companyId, redirectAction){
-
 	db.table('companyprofile').where('companyId').eq(companyId).update({
 		logo: path
 	}, function( err, data ) {
@@ -83,11 +83,6 @@ exports.updateCompanyLogo = function(req, res, path, companyId, redirectAction){
 			res.status(400).json({errmsg:err});
 		}else{
 			res.redirect('/companyhomepage');
-			/*if(redirectAction === 'update'){
-				res.redirect('/companyhomepage');
-			}else{
-				res.redirect('/companyhomepage');
-			}*/
 		}
 	});
 }
@@ -223,5 +218,6 @@ exports.companyData = function(companyId, callback){
 }
 
 exports.logout = function(req, res){
+	req.session.companyId = null;
 	res.render('login');
 }

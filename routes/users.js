@@ -22,7 +22,6 @@ exports.signUp = function(req, res) {
 		lastName = req.body.lastName;
 		email = req.body.email;
 	}
-<<<<<<< HEAD
 	user.signUp(email, pwd, firstName, lastName,userType,function(err,data){
 		if(err){
 			  res.writeHead(400);
@@ -39,9 +38,8 @@ exports.signUp = function(req, res) {
 			}
 		}
 	});
-=======
-	user
-			.signUp(
+
+	user.signUp(
 					email,
 					pwd,
 					firstName,
@@ -66,7 +64,7 @@ exports.signUp = function(req, res) {
 							}
 						}
 					});
->>>>>>> origin/master
+
 }
 
 exports.signIn = function(req, res) {

@@ -9,12 +9,13 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
+	
 	<body>
 <nav class="navbar navbar-fixed-top header">
  	<div class="col-md-12">
         <div class="navbar-header">
           
-          <a href="/homePage" class="navbar-brand">LinkedIn Prototype</a>
+          <a href="/companyhomepage" class="navbar-brand">LinkedIn Prototype</a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
           <i class="glyphicon glyphicon-search"></i>
           </button>
@@ -27,8 +28,8 @@
 <div class="navbar navbar-default" id="subnav">
     <div class="col-md-12">
         <div class="navbar-header">
-          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"></i> Home <small></small></a>
-          <a href="/company/logout" style="margin-left:5px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"></i> Logout <small></small></a>
+          <a href="/companyhomepage" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle"></i> Home <small></small></a>
+          <a href="/company/logout" style="margin-left:5px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle"></i> Logout <small></small></a>
         </div>
     </div>	
 </div>
@@ -59,7 +60,11 @@
                 </div>
                 <div class="form-group">
                   <label for="website">Website Links</label>
-                  <input id="urlText" type="text" class="form-control" id="website" disabled><button id="saveurl" class="btn btn-link pull-right" type="button">save</button><button id="editurl" class="btn btn-link pull-right" type="button">edit</button>
+                  <input id="urlText" type="text" class="form-control" disabled><button id="saveurl" class="btn btn-link pull-right" type="button">save</button><button id="editurl" class="btn btn-link pull-right" type="button">edit</button>
+                </div>
+                <div class="form-group">
+                  <label for="followers">Followers</label>
+                  <input id="followers" type="text" class="form-control" disabled>
                 </div>
                 
             </form>
@@ -115,6 +120,7 @@
 	       			$("#overviewText").val(d.data[0].overview);
 	       			$("#urlText").val(d.data[0].url);
 	       			$("#cLogo").attr("src", d.data[0].logo);	
+	       			$("#followers").val(d.data[0].numFollowers);
 		       }
 		    }
 		});

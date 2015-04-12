@@ -86,7 +86,7 @@ exports.insertStatus = function(req,res){
 		
 	});
 	
-},
+}
 
 exports.insertCompanyFollowed = function(req,res){
 	
