@@ -90,8 +90,11 @@ exports.insertStatus = function(req,res){
 
 exports.insertCompanyFollowed = function(req,res){
 	
+	console.log("Inside insert Company Followed");
 	var userid = req.params.userid;
 	var company_followed = req.body.company_followed;
+	
+	console.log("company_followed"+company_followed);
 	
 	profile.updateCompanyFollowed(userid,company_followed,function(err,data){
 		
