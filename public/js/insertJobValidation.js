@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-
    $("#btnPostJob").click(function () 
               {    
               

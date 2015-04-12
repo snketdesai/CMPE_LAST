@@ -212,20 +212,6 @@ $(document).ready(function(){
     	          });
     	  });	
       });
-      
-      $("#postJob").click(function(){
-     	 var companyName = $("#name").val();
-     	 console.log("Company Name____"+companyName);
-     	 var url = "/insertJobDetailsPage/"+companyName; 
-     	 window.location = url;
-     	  
-       });
-       
-       $("#viewJobs").click(function(){
-      	 var url = "/showJobsByCompany"; 
-      	 window.location = url;
-      	  
-        });
 });
 
 
