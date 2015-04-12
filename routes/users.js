@@ -22,6 +22,24 @@ exports.signUp = function(req, res) {
 		lastName = req.body.lastName;
 		email = req.body.email;
 	}
+<<<<<<< HEAD
+	user.signUp(email, pwd, firstName, lastName,userType,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while inserting data\n");
+		}
+		else{	
+			console.log(data);
+			req.session.userId = data.insertId;
+			if(userType === "U"){
+				 res.render("homepage",{user:req.session.userId,lastLoggedIn:""});
+			}
+			else if(userType === "C"){
+				res.render('login');  
+			}
+		}
+	});
+=======
 	user
 			.signUp(
 					email,
@@ -48,6 +66,7 @@ exports.signUp = function(req, res) {
 							}
 						}
 					});
+>>>>>>> origin/master
 }
 
 exports.signIn = function(req, res) {

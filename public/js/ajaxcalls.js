@@ -272,6 +272,8 @@ $(document).ready(function(){
             }
           });
        });
+<<<<<<< HEAD
+=======
       
       	
       
@@ -304,6 +306,7 @@ $(document).ready(function(){
             }
           });
       });*/
+>>>>>>> origin/master
 });
 
 
