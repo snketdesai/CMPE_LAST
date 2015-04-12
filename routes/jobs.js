@@ -110,15 +110,16 @@ exports.showInsertJobDetailsView = function(req, res) {
 
 exports.showJobDetailsView = function(req, res) {
 	var jobId = req.params.jobId;
+	var userid = req.session.userId;
 	console.log("Inside showJobDetailsView");
 	job.getJobDetails(jobId, function(err, data) {
 		if (err) {
 			res.writeHead(400);
 			res.end("Error while fetching data\n");
 		} else {
-			console.log(data);
-			res.render("jobDetails",{job:data});
-
+			
+			res.render("jobDetails",{job:data,userId:userid});
+			
 		}
 	});
 }

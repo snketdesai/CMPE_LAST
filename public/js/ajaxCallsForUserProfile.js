@@ -108,6 +108,13 @@ $(document).ready(function(){
 				window.location = "/userprofile";
 	
 			})
+			
+		$('#jobapp').click(function(){
+		
+				window.location = "/userapplication/"+$("#userid").val();
+	
+			})
+			
 		$('#job').click(function(){
 				window.location = '/showJobs';
 			})

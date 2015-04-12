@@ -66,8 +66,15 @@
 			   <div class="panel panel-default">
 			   		 <div class="panel-heading"><h4><%=job.jobTitle%></h4></div>
 			   		 <div class="panel-body">
+               <form action = "/application" method = "POST">
 			   		 	   <p class="lead"><%=job.companyName%> - <%=job.location%></p>
-			   		 	    <button class="btn btn-success pull-left" type="submit">Apply</button>
+                 <input type = "hidden" name = "jobId" value = <%=job.jobId %>>
+                 <input type = "hidden" name = "userId" value = <%=userId %>>
+                 <input type = "hidden" name = "companyId" value = <%=job.companyId %>>
+                 <input type = "hidden" name = "companyName" value = <%=job.companyName %>>
+                 <input type = "hidden" name = "status" value = "Under Review">  
+			   		 	   <button class="btn btn-success pull-left" type="submit">Apply</button>
+               </form>
 			   		 </div>
 			   </div>
 		</div>

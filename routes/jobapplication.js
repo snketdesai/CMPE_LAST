@@ -10,9 +10,10 @@ exports.postJobApplication = function(req,res){
 	var jobId = req.body.jobId;
 	var userId = req.body.userId;
 	var companyId = req.body.companyId;
+	var companyName = req.body.companyName;
 	var status = req.body.status;
-	var applicationDate = req.body.applicationDate;
-	user.postJobApplication(jobId, userId, companyId, status, applicationDate,function(err,data){
+	//var applicationDate = req.body.applicationDate;
+	user.postJobApplication(jobId, userId, companyId, companyName, status, function(err,data){
 		if(err){
 			  res.writeHead(400);
 			  res.end("Error while inserting data\n");
@@ -26,7 +27,9 @@ exports.postJobApplication = function(req,res){
 
 exports.getJobApplication = function(req,res){
 	console.log("Job Application requested");
+	//var userId = req.session.userId;
 	var userId = req.params.userId;
+	console.log("UserId: "+ userId);
 	user.getJobApplication(userId,function(err,data){
 		if(err){
 			  res.writeHead(400);
@@ -34,7 +37,10 @@ exports.getJobApplication = function(req,res){
 		}
 		else{	
 			 console.log(data);
-			 res.send(JSON.stringify(data));
+			 //appdata = JSON.stringify(data);
+			 console.log("alerting data: " + data[0].job_id);
+			 //res.send(JSON.stringify(data));
+			 res.render("jobApplication",{app : data});
 		}
 	});
 }

@@ -6,13 +6,13 @@ var conn = require('../model/dbConnection');
 var pool = conn.getPoolInstance();
 
 
-exports.postJobApplication = function(jobId, userId, companyId, status, applicationDate, callback) {
+exports.postJobApplication = function(jobId, userId, companyId, companyName, status, callback) {
 
 	var query = "insert into job_applications "
-			+ "(job_id,user_id,company_id,status,application_date)"
-			+ "values (?,?,?,?,?);";
+			+ "(job_id,user_id,company_id,company_name,status,application_date)"
+			+ "values (?,?,?,?,?,now());";
 	pool.getConnection(function(err, connection) {
-		connection.query(query, [ jobId, userId, companyId, status, applicationDate],
+		connection.query(query, [ jobId, userId, companyId, companyName, status],
 				function(err, rows) {
 
 					if (err) {
@@ -29,7 +29,7 @@ exports.postJobApplication = function(jobId, userId, companyId, status, applicat
 exports.getJobApplication = function(userId, callback) {
 
 	console.log(" userId: " + userId);
-	var sql = 'SELECT job_id,user_id,company_id,status,application_date FROM job_applications where user_id = ?';
+	var sql = 'SELECT company_name,job_id,company_id,status,application_date FROM job_applications where user_id = ?';
 	console.log(sql);
 	pool.getConnection(function(err, connection) {
 		connection.query(sql, [ userId ], function(err, rows) {
