@@ -77,7 +77,7 @@ exports.deleteJob = function(req, res) {
 			res.end("Error while deleting record\n");
 		} else {
 			res.writeHead(200);
-			res.end("Record Deleted successfully");
+			res.end("Job Deleted Successfully\n");
 
 		}
 	});

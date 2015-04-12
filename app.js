@@ -83,7 +83,7 @@ app.get('/jobs/:jobId',job.getJobDetails);
 app.get('/searchJobs/:searchTerm',job.searchJobs);
 app.get('/company/jobs',job.getJobsByCompany);
 app.post('/company/:companyId/jobs/',job.insertJobDetails);
-app.delete('/company/:companyId/jobs/:jobId',job.deleteJob);
+app.get('/company/:companyId/jobs/:jobId',job.deleteJob);
 
 app.get('/searchpage', companyprofile.getSearchView);
 app.get('/companyregistrationpage', companyprofile.getCompanyRegisterView);
