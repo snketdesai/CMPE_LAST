@@ -45,7 +45,7 @@ if ('development' == app.get('env')) {
 
 app.get('/',index.login);
 app.get('/searchPage', index.search); //returns search page
-
+app.get('/homePage',index.home); //returns home page
 app.post('/signUp',user.signUp);
 app.post('/signIn',user.signIn);
 app.get('/getUserFromSession',user.getUserFromSession);

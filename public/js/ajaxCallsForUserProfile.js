@@ -102,7 +102,21 @@ $.ajax({
 });
 */
 $(document).ready(function(){
+		
+		$('#profile').click(function(){
+		
+				window.location = "/userprofile";
 	
+			})
+		$('#job').click(function(){
+				window.location = '/showJobs';
+			})
+
+		$('#search').click(function(){
+				window.location =  '/searchPage';
+			})
+		var username = getName($('#userid').val());
+		$('#uname').html(username);
 		 $( "#editBio" ).click(function() {
 		        $("#editBio").hide();
 		        $("#saveBio").show();
@@ -300,7 +314,7 @@ function getName(id){
 	    async : false,
 	    success: function( d ) {
 	    	
-	    	name = d[0].firstname;
+	    	name = d[0].firstname + " " + d[0].lastname;
 	    
 	    	//return false;
 	    }

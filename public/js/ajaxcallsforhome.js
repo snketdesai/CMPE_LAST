@@ -7,6 +7,7 @@ $.ajax({
     crossDomain : true,
     contentType: "application/json; charset=UTF-8",
     dataType: 'json',
+   
     success: function(d) {
        //var d = JSON.stringify(d);
        //alert(d);
@@ -91,7 +92,7 @@ function getName(id){
 	    async : false,
 	    success: function( d ) {
 	    	
-	    	name = d[0].firstname;
+	    	name = d[0].firstname + " " + d[0].lastname;
 	    
 	    	//return false;
 	    }
@@ -103,6 +104,8 @@ function getName(id){
 
 $(document).ready(function(){
 	
+	var username = getName($('#userid').val());
+	$('#name').html(username);
 	$('#profile').click(function(){
 		
 			window.location = "/userprofile";

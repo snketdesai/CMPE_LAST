@@ -5,20 +5,11 @@ var dynomoDb;
 var pool;
 
 var $credentials = {
-<<<<<<< HEAD
+
 		"accessKeyId": "", 
 		"secretAccessKey": "", 
-		"region": "us-west-1"
-=======
-
-		
-			"accessKeyId": "", 
-			"secretAccessKey": "", 
-			"region": ""
-		
-
-      
->>>>>>> origin/master
+		"region": ""
+  
 }
 
 function getAWS_SDK(){

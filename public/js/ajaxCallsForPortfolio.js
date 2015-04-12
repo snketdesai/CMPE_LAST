@@ -7,6 +7,7 @@ $.ajax({
     crossDomain : true,
     contentType: "application/json; charset=UTF-8",
     dataType: 'json',
+    async : false,
     success: function(d) {
        //var d = JSON.stringify(d);
        //alert(d);

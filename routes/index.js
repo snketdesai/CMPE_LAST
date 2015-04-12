@@ -11,3 +11,7 @@ exports.search = function(req, res){
 	console.log("Search "+req.session.userId);
 	res.render('search');
 };
+
+exports.home = function(req, res){
+	  res.render('homepage',{user:req.session.userId});
+	};
