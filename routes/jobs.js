@@ -113,7 +113,7 @@ exports.showJobDetailsView = function(req, res) {
 			res.writeHead(400);
 			res.end("Error while fetching data\n");
 		} else {
-
+			console.log(data);
 			res.render("jobDetails",{job:data});
 
 		}
