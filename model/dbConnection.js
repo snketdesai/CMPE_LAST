@@ -8,8 +8,10 @@ var $credentials = {
 
 		"accessKeyId": "", 
 		"secretAccessKey": "", 
+
 		"region": ""
   
+
 }
 
 function getAWS_SDK(){
@@ -42,8 +44,7 @@ exports.getPoolInstance = function(){
 		pool  = mysql.createPool({
 
 			
-
-			});
+		});
 		return pool;
 	}
 		

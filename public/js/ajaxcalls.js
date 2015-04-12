@@ -136,10 +136,12 @@ $(document).ready(function(){
       });
       
       $( "#companyProfile" ).click(function() {
+    	  var id = document.getElementById('companyId').value;
           var name = document.getElementById('name').value;
           var overviewText = document.getElementById('overviewText').value;
           var urlText = document.getElementById('urlText').value;
           var profileObj = {
+        	  id : id,
         	  name : name,
         	  overviewText : overviewText,
         	  urlText : urlText
@@ -153,6 +155,7 @@ $(document).ready(function(){
             data: JSON.stringify(profileObj),
             crossDomain : true,
             success: function( d ) {
+               console.log(d.companyId);
                var html = '';
                html += '<div class="form-group" name="up">';
                html += '<form id = "uploadForm" enctype = "multipart/form-data" action = "/company/'+d.companyId+'/logo" method = "post">';
@@ -212,6 +215,7 @@ $(document).ready(function(){
       
       $( "#companySearch" ).click(function() {
           var name = $('#cName').val();
+          console.log(name);
           var companyname = {
         	  name : name
           };

@@ -13,27 +13,23 @@ exports.getSearchView = function(req,res){
 exports.getCompanyProfileViewName = function(req,res){
 	var query = req.params.companyName;
 	client.get(query, function(err, companyId) {
-		db.table('companyprofile').having('companyId').eq(companyId).scan(
-		function(err, data) {
-			if(!err){
-				res.render('companyprofile', {data:data});
-			}else{
-				console.log(err);
-			}
-		});
+		res.render('companyprofile', {companyId:companyId});
 	}); 
 }
 
 exports.getCompanyView = function(req,res){
-	res.render('companyhomepage');
+	console.log(req.session.companyId);
+	res.render('companyhomepage', {companyId:req.session.companyId});
 }
 
 exports.getCompanyRegisterView = function(req,res){
-	res.render('companydetailsregistration');
+	console.log(req.session.companyId);
+	res.render('companydetailsregistration', {companyId:req.session.companyId});
 }
 
 exports.getCompanyProfile = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
+	console.log("  cid  "+companyId);
 	db.table('companyprofile').having('companyId').eq(companyId).scan(
 	function(err, data) {
 		if(!err){
@@ -43,7 +39,7 @@ exports.getCompanyProfile = function(req,res){
 }
 
 exports.insertCompanyProfile = function(req,res){	
-	var companyId = uuid.v1();
+	var companyId = req.session.companyId;
 	var companyName = req.body.name;
 	var overview = req.body.overviewText;
 	var url = req.body.urlText;
@@ -53,9 +49,9 @@ exports.insertCompanyProfile = function(req,res){
 		companyName : companyName,
 		overview : overview,
 		url : url,
-		logo : null,
+		logo : "junk",
 		numFollowers : 0,
-		status : null
+		status : "junk"
 	},function(err,data) {
 		if(err){
 			console.log("Error: "+err);
@@ -68,8 +64,7 @@ exports.insertCompanyProfile = function(req,res){
 }
 
 exports.changeCompanyLogo = function(req,res){
-	console.log(req.body.cId);
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	fs.readFile(req.files.logo.path, function (err, data) {
 	  fs.writeFile("./public/uploads/"+req.files.logo.name, data, function (err) {
 		  cprofile.updateCompanyLogo(req, res, "./uploads/"+req.files.logo.name, companyId, req.body.cId);
@@ -78,6 +73,7 @@ exports.changeCompanyLogo = function(req,res){
 }
 
 exports.updateCompanyLogo = function(req, res, path, companyId, redirectAction){
+
 	db.table('companyprofile').where('companyId').eq(companyId).update({
 		logo: path
 	}, function( err, data ) {
@@ -85,17 +81,18 @@ exports.updateCompanyLogo = function(req, res, path, companyId, redirectAction){
 			console.log( err );
 			res.status(400).json({errmsg:err});
 		}else{
-			if(redirectAction === 'update'){
+			res.redirect('/companyhomepage');
+			/*if(redirectAction === 'update'){
 				res.redirect('/companyhomepage');
 			}else{
-				res.redirect('/');
-			}
+				res.redirect('/companyhomepage');
+			}*/
 		}
 	});
 }
 
 exports.updateCompanyName = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	var name = req.body.name;
 	
 	db.table('companyprofile').where('companyId').eq(companyId).update({
@@ -113,7 +110,7 @@ exports.updateCompanyName = function(req,res){
 }
 
 exports.updateCompanyOverview = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	var overview = req.body.overview;
 	
 	db.table('companyprofile').where('companyId').eq(companyId).update({
@@ -130,7 +127,7 @@ exports.updateCompanyOverview = function(req,res){
 }
 
 exports.updateCompanyURL = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	var url = req.body.urlO;
 	
 	db.table('companyprofile').where('companyId').eq(companyId).update({
@@ -147,7 +144,7 @@ exports.updateCompanyURL = function(req,res){
 }
 
 exports.addCompanyFollower = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	
 	db.table('companyprofile').where('companyId').eq(companyId).increment({
 		numFollowers : 1
@@ -163,7 +160,7 @@ exports.addCompanyFollower = function(req,res){
 }
 
 exports.updateCompanyStatus = function(req,res){
-	var companyId = req.params.companyId;
+	var companyId = parseInt(req.params.companyId);
 	var status = req.body.status;
 	
 	db.table('companyprofile').where('companyId').eq(companyId).update({
@@ -194,7 +191,8 @@ exports.companySearch = function(req,res){
 		var counter = 0;
 		ids.forEach(function (key, pos) {
 	    	client.get(key, function(err, companyId) {
-	    		cprofile.companyData(companyId, function(err, data){
+	    		console.log(companyId);
+	    		cprofile.companyData(parseInt(companyId), function(err, data){
 	    			if(!err){
 	    				result.push(data);
 	    				counter++;
