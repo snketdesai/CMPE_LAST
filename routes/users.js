@@ -30,20 +30,11 @@ exports.signUp = function(req,res){
 		}
 		else{	
 			console.log(data);
-<<<<<<< HEAD
-
-
-			res.render("homepage");
-
-
-=======
->>>>>>> origin/master
 			req.session.userId = data.insertId;
 			if(userType === "U"){
 				 res.render("homepage",{user:req.session.userId,lastLoggedIn:""});
 			}
 			else if(userType === "C"){
-				console.log("----------------------------------------------------------------------");
 				res.render('login');  
 			}
 		}

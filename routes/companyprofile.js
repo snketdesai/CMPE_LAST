@@ -5,6 +5,7 @@ var fs = require("fs");
 var cprofile = require('./companyprofile');
 var redis = require("redis");
 var client = redis.createClient(6379,"127.0.0.1");
+//redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
 
 exports.getSearchView = function(req,res){
 	res.render('search');

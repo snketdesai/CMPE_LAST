@@ -244,35 +244,5 @@ $(document).ready(function(){
             }
           });
        });
-      
-      $( "#companySearch" ).click(function() {
-    	  var id = $('#companyId').val();
-    	  var name = $('#cName').val();
-    	  var title = $('#jobTitle').val();
-    	  var desc = $('#jobDesc').val();
-    	  var expiry = $('#expiry').val();
-    	  var location = $('#location').val();
-    	  
-          var jobDetails = {
-        	  id : id,
-        	  name : name,
-        	  title : title,
-        	  desc : desc,
-        	  expiry : expiry,
-        	  location : location
-          };
-          
-          $.ajax({
-            type: "POST",
-            url: "/insertJobDetailsPage",
-            contentType: "application/json; charset=UTF-8",
-            dataType: 'json',
-            data: JSON.stringify(jobDetails),
-            crossDomain : true,
-            success: function( d ) {
-            	console.log(d);
-            }
-          });
-      });
 });
         
