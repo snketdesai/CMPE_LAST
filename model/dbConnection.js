@@ -8,9 +8,7 @@ var $credentials = {
 
 		"accessKeyId": "", 
 		"secretAccessKey": "", 
-
-		"region": ""
-  
+		"region": "us-west-1"
 
 }
 
@@ -43,7 +41,16 @@ exports.getPoolInstance = function(){
 	{
 		pool  = mysql.createPool({
 
-			
+			host     : '',
+
+			user     : '',
+
+			password : '',
+
+			port : '3306',
+
+			database : 'busi_soc_net'
+
 		});
 		return pool;
 	}
