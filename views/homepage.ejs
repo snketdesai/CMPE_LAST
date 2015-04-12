@@ -117,7 +117,7 @@
         <div class="collapse navbar-collapse" id="navbar-collapse2">
           <ul class="nav navbar-nav navbar-right">
           	<%
-          		if(lastLoggedIn != "")
+          		if((typeof lastLoggedIn != 'undefined') && lastLoggedIn != "")
           		{%>
           		
           	    <li><a>Last Logged in :  <%=lastLoggedIn%></a></li>	
@@ -125,7 +125,7 @@
           		}
           	%>
        
-           <li><a href="/" role="button" data-toggle="modal">Logout</a></li>
+           <li><a href="/logout" role="button" data-toggle="modal">Logout</a></li>
            </ul>
         </div>  
        </div> 
