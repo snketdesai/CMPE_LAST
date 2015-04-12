@@ -185,6 +185,34 @@ $(document).ready(function(){
           return false;
       }); 
       
+      $("#followCompany").click(function(){
+    	  $.get("/getUserFromSession", function(user) {
+    			console.log("USer from session_______"+user);
+    			var userId = user;
+    			var companyName = $("#name").val();
+    			console.log("Company Name____"+companyName);
+    			var url = "/company_followed/"+userId;
+    			console.log("User "+userId+" Started Following company "+companyName);
+    			 var comp = new Array();
+    			 comp.push(companyName);
+    	        var company_followed = {
+    	        		company_followed : comp
+    	        };
+    	        
+    	        $.ajax({
+    	            type: "POST",
+    	            url: url,
+    	            contentType: "application/json; charset=UTF-8",
+    	            dataType: 'json',
+    	            data: JSON.stringify(company_followed),
+    	            crossDomain : true,
+    	            success: function( d ) {
+    	               console.log(d);
+    	            }
+    	          });
+    	  });	
+      });
+    	  
       
       $("#cName").autocomplete({
 			delay: 500,
@@ -244,5 +272,42 @@ $(document).ready(function(){
             }
           });
        });
+<<<<<<< HEAD
+=======
+      
+      	
+      
+   /*   $( "#companySearch" ).click(function() {
+    	  var id = $('#companyId').val();
+    	  var name = $('#cName').val();
+    	  var title = $('#jobTitle').val();
+    	  var desc = $('#jobDesc').val();
+    	  var expiry = $('#expiry').val();
+    	  var location = $('#location').val();
+    	  
+          var jobDetails = {
+        	  id : id,
+        	  name : name,
+        	  title : title,
+        	  desc : desc,
+        	  expiry : expiry,
+        	  location : location
+          };
+          
+          $.ajax({
+            type: "POST",
+            url: "/insertJobDetailsPage",
+            contentType: "application/json; charset=UTF-8",
+            dataType: 'json',
+            data: JSON.stringify(jobDetails),
+            crossDomain : true,
+            success: function( d ) {
+            	console.log(d);
+            }
+          });
+      });*/
+>>>>>>> origin/master
 });
+
+
         
