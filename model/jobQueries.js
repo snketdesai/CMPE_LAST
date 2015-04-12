@@ -82,9 +82,9 @@ exports.insertJob = function(companyId,companyName, jobTitle, jobDesc, expiryDat
 			var jsonObj = {jobId : jobId, companyName : companyName,jobTitle : jobTitle, location : location,expiryDate : expiryDate};
 			console.log("Json Obj_____"+JSON.stringify(jsonObj));
 			var jobObj = JSON.stringify(jsonObj);
-			client.sadd(companyName, jobObj);
-			client.sadd(jobTitle, jobObj);
-			client.sadd(location,jobObj);
+			client.sadd(companyName.toLowerCase(), jobObj);
+			client.sadd(jobTitle.toLowerCase(), jobObj);
+			client.sadd(location.toLowerCase(),jobObj);
 		}
 		callback( err, data );
     });
@@ -104,7 +104,7 @@ exports.deleteJob = function(jobId,callback){
 // Method to search Job
 
 exports.searchJobs = function(searchTerm,callback){
-	var key = "*"+searchTerm+"*";
+	var key = "*"+searchTerm.toLowerCase()+"*";
 	console.log("Key_________"+key);
 	client.keys(key, function (err, all_keys) {
 	   var jobs = [];
