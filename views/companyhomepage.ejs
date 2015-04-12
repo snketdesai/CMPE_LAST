@@ -42,11 +42,12 @@
       <div class="well">
           <h4>Company Profile</h4>
           <form>
+          		
           		<div class="col-xs-6 col-sm-4"><img id="cLogo" src="..." class="img-responsive" alt="Responsive image"><br></div>
           		<div id="up" class="form-group" name="up" id="changeL">	
           		</div>
-          		<button id="editLogo" class="btn btn-link pull-right" type="button">change logo</button>
-                <input id="companyId" type="text" class="form-control" placeholder="Company Id" value="1292e6b0-e020-11e4-857d-2f2a3c84016c" disabled>
+          		<button id="editLogo" class="btn btn-link pull-right" type="button">change logo</button><br>
+          		<input id="companyId" type="hidden" class="form-control" value=<%= companyId %> >
                 <div class="form-group">
                   <label for="companyName">Company Name</label>
                   <input id="name" type="text" class="form-control" disabled><button id="savename" class="btn btn-link pull-right" type="button">save</button><button id="editname" class="btn btn-link pull-right" type="button">edit</button>
@@ -118,12 +119,13 @@
 </div><!--/main-->
 
 	<!-- script references -->
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
-  	<script src="js/ajaxcalls.js"></script>
+	<script src="./js/jquery-1.11.2.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/scripts.js"></script>
+  	<script src="./js/ajaxcalls.js"></script>
   	<script type="text/javascript">
   		var cId = $("#companyId").val();
+  		console.log("cId  "+cId);
   		if(cId === ''){
   			cId = 'junk';
   		}
