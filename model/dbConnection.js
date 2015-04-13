@@ -6,9 +6,9 @@ var pool;
 
 var $credentials = {
 
-		"accessKeyId": "", 
-		"secretAccessKey": "", 
-		"region": ""
+		"accessKeyId": "AKIAJYGYB4GVG3ZACBOQ", 
+		"secretAccessKey": "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", 
+		"region": "us-west-1"
 
 }
 
@@ -41,15 +41,15 @@ exports.getPoolInstance = function(){
 	{
 		pool  = mysql.createPool({
 
-			host     : '',
+			host     : 'cmpe282lab.cckbiaous4u7.us-west-1.rds.amazonaws.com',
 
-			user     : '',
+			user     : 'CMPE282',
 
-			password : '',
+			password : 'cmpe282shim',
 
-			port : '',
+			port : '3306',
 
-			database : ''
+			database : 'busi_soc_net'
 
 		});
 		return pool;

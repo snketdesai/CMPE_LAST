@@ -17,16 +17,7 @@ $.ajax({
        var username = getName(sessionStorage.userid);
        //alert(username);
        $('#username').html(username);
-       if(d.Item.user_followed)
-       {var length_of_user_followed = d.Item.user_followed.SS.length;
        
-       for(var i=0;i<length_of_user_followed;i++)
-    	   {
-    	   		var usernameid = getName(d.Item.user_followed.SS[i]);
-    	   		var html = '<li class="list-group-item">'+usernameid+'</li>';
-    	   		$('#listForUser').append($(html));
-    	   }
-       }
        var length_of_college = d.Item.college.SS.length;
        
        for(var i=0;i<length_of_college;i++)
@@ -61,6 +52,17 @@ $.ajax({
 	   		$('#listForCompany').append($(html));
 	   }
     	   }
+       
+       if(d.Item.user_followed)
+       {var length_of_user_followed = d.Item.user_followed.SS.length;
+       
+       for(var i=0;i<length_of_user_followed;i++)
+    	   {
+    	   		var usernameid = getName(d.Item.user_followed.SS[i]);
+    	   		var html = '<li class="list-group-item">'+usernameid+'</li>';
+    	   		$('#listForUser').append($(html));
+    	   }
+       }
        //$("#overviewText").val(d.data[0].overview);
        //$("#urlText").val(d.data[0].url);
     }

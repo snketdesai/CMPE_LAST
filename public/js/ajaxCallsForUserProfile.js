@@ -17,6 +17,15 @@ $.ajax({
        $("#bio").val(d.Item.bio.S);
        $("#status").val(d.Item.status.S);
        
+       
+       
+       
+       $("#college").val(d.Item.college.SS[0]);
+       
+       $("#skill").val(d.Item.skill.SS[0]);
+       
+       $("#certification").val(d.Item.certification.SS[0]);
+       
        var length_of_user_followed = d.Item.user_followed.SS.length;
        
        for(var i=0;i<length_of_user_followed;i++)
@@ -26,13 +35,6 @@ $.ajax({
     	   		$('#listForUser').append($(html));
     	   }
        
-       
-       $("#college").val(d.Item.college.SS[0]);
-       
-       $("#skill").val(d.Item.skill.SS[0]);
-       
-       $("#certification").val(d.Item.certification.SS[0]);
-       
        var length_of_company = d.Item.company_followed.SS.length;
        
        for(var i=0;i<length_of_company;i++)
@@ -40,6 +42,8 @@ $.ajax({
 	   		var html = '<li class="list-group-item">'+d.Item.company_followed.SS[i]+'</li>';
 	   		$('#listForCompany').append($(html));
 	   }
+       
+       
       
        //$("#overviewText").val(d.data[0].overview);
        //$("#urlText").val(d.data[0].url);
