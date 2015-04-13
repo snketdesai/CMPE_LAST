@@ -63,8 +63,7 @@ exports.insertJobDetails = function(req, res) {
 			res.writeHead(400);
 			res.end("Error while inserting data\n");
 		} else {
-			res.send("Job inserted");
-
+			res.redirect("/companyhomepage");
 		}
 	});
 }
