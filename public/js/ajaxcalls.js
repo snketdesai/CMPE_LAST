@@ -232,12 +232,11 @@ $(document).ready(function(){
     	  });	
       });
       
-<<<<<<< HEAD
       $("#unFollowCompany").click(function(){
     	  $("#unFollowCompany").hide();
     	  $("#followCompany").show();
       });
-=======
+
       $("#postJob").click(function(){
      	 var companyName = $("#name").val();
      	 console.log("Company Name____"+companyName);
@@ -251,7 +250,6 @@ $(document).ready(function(){
       	 window.location = url;
       	  
         });
->>>>>>> de987b90147d9d2396121c0a38f970bbaac01016
 });
 
 
