@@ -16,9 +16,10 @@ exports.postJobApplication = function(jobId, userId, companyId, companyName, sta
 				function(err, rows) {
 
 					if (err) {
+						pool.releaseConnection(connection);
 						console.log("Error in inserting job application : " + err);
 					} else {
-						connection.release();
+						pool.releaseConnection(connection);
 						callback(err, rows);
 					}
 				});
@@ -35,9 +36,11 @@ exports.getJobApplication = function(userId, callback) {
 		connection.query(sql, [ userId ], function(err, rows) {
 			console.log(rows);
 			if (rows.length !== 0) {
+				pool.releaseConnection(connection);
 				callback(err, rows);
 
 			} else {
+				pool.releaseConnection(connection);
 				console.log("no job with these search parameters");
 				callback(err, rows);
 			}
@@ -56,8 +59,10 @@ exports.updateJobStatus = function(jobId, userId, status, callback){
 			if(rows.length !== 0){
 			connection.query(sqlupdate,[status, jobId, userId]);
 			callback(err,rows);
+			pool.releaseConnection(connection);
 			console.log("Job status updated successfully.");
 			} else {
+				pool.releaseConnection(connection);
 				console.log("no job with these search parameters");
 				callback(err, rows);
 			}

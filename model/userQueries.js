@@ -14,9 +14,10 @@ exports.signUp = function(email, password, firstName, lastName,userType, callbac
 				function(regerr, rows) {
 
 					if (regerr) {
+						pool.releaseConnection(connection);
 						console.log("Error regiter user : " + regerr);
 					} else {
-						connection.release();
+						pool.releaseConnection(connection);
 						callback(regerr, rows);
 					}
 				});
@@ -71,9 +72,11 @@ exports.searchUsers = function(firstName, lastName, callback) {
 			console.log(rows);
 			if(err){
 				console.log("no users exist with these search parameters");
+				pool.releaseConnection(connection);
 				callback(err, rows);
 			}
 			else {
+				pool.releaseConnection(connection);
 				callback(err, rows);
 
 			}
@@ -89,6 +92,7 @@ exports.isUserPresent = function(email,callback){
 		  connection.query( queryusername,[email], function(err, rows) {
 		    connection.release();
 		    if(err){
+		    	pool.releaseConnection(connection);
 		    	console.log("Error check username available : "+err);
 		    }
 		    else{
@@ -97,6 +101,7 @@ exports.isUserPresent = function(email,callback){
 		    	if(rows.length > 0){
 		    		 isunique = true;    		
 		    	}
+		    	pool.releaseConnection(connection);
 		    	 callback(err,isunique);
 		    }
 		  }); 
@@ -119,14 +124,15 @@ exports.getName = function(userId, callback) {
 	console.log(rows);
 
 	if (rows.length !== 0) {
-
+		
+	pool.releaseConnection(connection);	
 	callback(err, rows);
 
 
 	} else {
 
 	console.log("no users exist with these search parameters");
-
+	pool.releaseConnection(connection);
 	callback(err, rows);
 
 	}

@@ -4,7 +4,7 @@ var uuid = require('node-uuid');
 var fs = require("fs");
 var cprofile = require('./companyprofile');
 var redis = require("redis");
-var client = redis.createClient(6379,"127.0.0.1");
+var client = redis.createClient(6379,"redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com");
 //redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
 var dbConn = require('../model/dbConnection');
 var dynamo = dbConn.getAWSConnection();
