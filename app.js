@@ -64,8 +64,8 @@ app.post('/skill/:userid',profile.insertSkill);
 app.post('/college/:userid',profile.insertCollege);
 app.post('/status/:userid',profile.insertStatus);
 app.post('/company_followed/:userid',profile.insertCompanyFollowed);
-//app.post('/user_followed/:userid',profile.insertUserFollowed);
 app.post('/user_followed',profile.insertUserFollowed);
+app.get('/user/:userId/companynewsfeed',profile.getCompanyNewsFeed);
 app.post('/posts',profile.insertPost);
 
 app.get('/portfolio',profile.getPortfolio); //portfolio page

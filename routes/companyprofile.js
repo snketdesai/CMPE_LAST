@@ -3,10 +3,11 @@ var db = dbConn.getDBconnection();
 var uuid = require('node-uuid');
 var fs = require("fs");
 var cprofile = require('./companyprofile');
-var redis = require("redis");
-var client = redis.createClient(6379,"127.0.0.1");
+
+var client = dbConn.getRedisConnection();
+/*var redis = require("redis");
+var client = redis.createClient(6379,"127.0.0.1");*/
 //redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
-var dbConn = require('../model/dbConnection');
 var dynamo = dbConn.getAWSConnection();
 
 exports.getSearchView = function(req,res){
@@ -54,7 +55,7 @@ exports.insertCompanyProfile = function(req,res){
 		url : url,
 		logo : "junk",
 		numFollowers : 0,
-		status : "junk"
+		status : "We are online!!! Do visit our official page!!!"
 	},function(err,data) {
 		if(err){
 			console.log("Error: "+err);
@@ -186,31 +187,6 @@ exports.addCompanyFollower = function(req,res){
 			res.status(200).json({msg:'follower added'});
 		}
     });
-	
-	
-	/*dynamo.updateItem(
-	    {"TableName":"companyprofile",
-        "Key":{
-            "companyId":{"N":req.params.companyId}
-         },
-        "AttributeUpdates":{
-        	"followingUsers":{
-        		"Value" :{
-        			"SS":userId
-        		},
-        	
-        	"Action":"ADD"
-        	}
-        }
-	    }, 
-	    function(err,data) {
-	    	if(!err){
-	    		//res.status(200).json({msg:'user update success'});
-	    		
-	    	}else{
-	    		console.log('error: '+err);
-	    	}
-	});*/
 }
 
 exports.updateCompanyStatus = function(req,res){

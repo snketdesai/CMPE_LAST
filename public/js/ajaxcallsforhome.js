@@ -1,4 +1,35 @@
+$.ajax({
+	type : "GET",
+	url : "/user/"+$("#userid").val()+"/companynewsfeed",
+	crossDomain : true,
+	success : function(d) {
+		var jsonObj = JSON.parse(d);
+		var html = "";
+		for(i=0;i<jsonObj.length;i++){
+			var temp = JSON.parse(escapeSpecialChars(jsonObj[i]));
+			console.log(temp.key+"  "+temp.value);
+	    	html += '<div class="well well-sm">';
+	    	html += '<div class="media">';
+	    	html += '<div class="media-body">';
+	    	html += '<h4 class="media-heading"> </h4>';
+	    	html += '<p>'+ temp.key +' posted this:</p>';
+	    	html += '<p>'+ temp.value +'</p>';
+	    	html += '</div>';
+	    	html += '</div>';
+	    	html += '</div>';
+		}
+		$('#company-body').append($(html));
+	}
+});
 
+function escapeSpecialChars(jsonString) {
+
+    return jsonString.replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r")
+        .replace(/\t/g, "\\t")
+        .replace(/\f/g, "\\f");
+
+}
 
 
 $.ajax({
@@ -103,13 +134,11 @@ function getName(id){
 }
 
 $(document).ready(function(){
-	
 	var username = getName($('#userid').val());
 	$('#name').html(username);
 	$('#profile').click(function(){
 		
 			window.location = "/userprofile";
-		
 });
 	$('#job').click(function(){
 		window.location = '/showJobs';

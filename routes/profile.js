@@ -1,4 +1,9 @@
 var profile = require('../model/profileQueries');
+var dbConn = require('../model/dbConnection');
+var db = dbConn.getDBconnection();
+
+var client = dbConn.getRedisConnection();
+
 //var multer  = require('multer');
 exports.insertBio = function(req,res){
 	var userid = req.params.userid;
@@ -177,9 +182,31 @@ exports.getProfile = function(req,res){
 }
 
 exports.getUserProfile = function(req,res){
-	//console.log("profile"+req.session.userId);
 	res.render('userprofile',{user:req.session.userId});
-	
+}
+
+exports.getCompanyNewsFeed = function(req,res){
+	var userId = req.params.userId;
+	profile.getProfileInfo(userId,function(err,data){
+		var companyArr = data.Item.company_followed.SS;
+		var posts = [];
+		var counter = 0;
+		for(i=0;i<companyArr.length;i++){
+			client.get(companyArr[i], function(err, result) {
+				db.table('companyprofile').having('companyId').eq(parseInt(result)).scan(
+					function(err, data) {
+					if(!err){
+						var postStr = '{"key":"'+data[0].companyName+'","value":"'+data[0].status+'"}';
+						posts.push(postStr);
+						counter++;
+	    				if(counter == companyArr.length){
+	    					res.send(JSON.stringify(posts));
+	    				}
+					}
+				});
+			});
+		}
+	});
 }
 
 exports.getPortfolio = function(req,res){
@@ -194,9 +221,3 @@ exports.storeProfileId = storeId;
 var storeId = {
 		id : "003"
 }
-/*function storeId()
-{
-	id = "003"
-		
-}
-*/

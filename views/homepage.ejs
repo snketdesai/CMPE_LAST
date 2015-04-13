@@ -9,100 +9,65 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <style type="text/css">
-
-    #searchbar{
-      margin-left: 300px;
-      width: 500px;
-    }
-
-
+	    #searchbar{
+	      margin-left: 300px;
+	      width: 500px;
+	    }
     </style>
-
-    <script type="text/javascript">
-      
-    </script>
-
     <!-- script references -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/scripts.js"></script>
-  <script type="text/javascript">
-
-		
-
-	function getUserDetails() {
-		console.log("Inside getUser");
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/scripts.js"></script>
+	  <script type="text/javascript">
+		function getUserDetails() {
 			$.get("/getUserFromSession", function(user) {
-				console.log("USer from session_______"+user);
-
+				console.log("USer from session :: "+user);
 			});
 		}
-  
-  </script>
-
-
-
+  	   </script>
   </head>
-  <body onload="getUserDetails()">
-<nav class="navbar navbar-fixed-top header">
-  <div class="col-md-12">
-        <div class="navbar-header">
-          
-          <input id="userid" type="hidden" value=<%= user %>>
+<body onload="getUserDetails()">
+		<nav class="navbar navbar-fixed-top header">
+		  <div class="col-md-12">
+		        <div class="navbar-header">
+		          
+		          <input id="userid" type="hidden" value=<%= user %>>
 
-          <a href="#" class="navbar-brand">LinkedIn Prototype</a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
-          <i class="glyphicon glyphicon-search"></i>
-          </button>
-      
-        </div>
+		          <a href="#" class="navbar-brand">LinkedIn Prototype</a>
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+		          <i class="glyphicon glyphicon-search"></i>
+		          </button>
+		      
+		        </div>
 
-        <div class="collapse navbar-collapse" id="navbar-collapse1">
-        </div>  
-     </div> 
-</nav>
-<div class="navbar navbar-default" id="subnav">
-    <div class="col-md-12">
-        <div class="navbar-header">
-          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"></i> Home <small></small></a>
-          <a href="#" style="margin-left:5px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"></i> Job Applications <small></small></a>
-        </div>
-
-        <form class="navbar-form pull-left">
-          <div class="input-group" id = "searchbar" style="max-width:470px;">
-            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-          <div class="input-group-btn">
-           <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-          </div>
-         </form>
-
-    </div>  
-</div>
+		        <div class="collapse navbar-collapse" id="navbar-collapse1">
+		        </div>  
+		     </div> 
+		</nav>
+		<div class="navbar navbar-default" id="subnav">
+		    <div class="col-md-12">
+		        <div class="navbar-header">
+		          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"></i> Home <small></small></a>
+		        </div>
+		    </div>  
+		</div>
 
 <!--main-->
-<div class="navbar navbar-fixed-top header">
-    <div class="col-md-12">
-      <div class="navbar-header">
-        
-        <a href="#" class="navbar-brand">Linkedin Prototype</a>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
-        <i class="glyphicon glyphicon-search"></i>
-        </button>
-      
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse1">
-        
-        
-         
-      </div>  
-     </div> 
+	<div class="navbar navbar-fixed-top header">
+	    <div class="col-md-12">
+	      <div class="navbar-header">
+	        <a href="/homePage" class="navbar-brand">Linkedin Prototype</a>
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+	        <i class="glyphicon glyphicon-search"></i>
+	        </button>
+	      </div>  
+	    </div> 
     </div>
     
     <div class="navbar navbar-default" id="subnav">
       <div class="col-md-12">
 	       <div class = "navbar-header">
-	          	<a href="" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+	          	<a href="/homePage" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
 	          	<ul class="nav dropdown-menu">
 	              <li id="profile"><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
 	              <li id="job"><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Jobs</a></li>
@@ -124,51 +89,28 @@
 
     <!--main-->
     <div class="container" id="main">
-    
-      <!--/row-->
-      
-    <div class="row">
-      <div class="col-md-12" ></div>
-    
-       <div class="col-md-4 col-sm-6">
-        <div class="panel panel-default" id="panel">
-          <div class="panel-heading"><h4 id="name">Name: </h4></div>
-
-
-        
-          <div class="panel-body">
-            
-          </div>
-          
-         </div> 
-      </div>
+	    <div class="row">
+	    	<div class="col-md-4 col-sm-6">
+		        <div class="panel panel-default" id="panel">
+		          <div class="panel-heading"><h4 id="name">Name: </h4></div>
+		          <div class="panel-body"></div>
+		         </div> 
+		    </div>
+	   		<div class="col-md-4 col-sm-6">
+		        <div class="panel panel-default" id = "panel">
+			        <div class="panel-heading"><h4>User Newsfeed</h4></div>
+			        <div id="panel-body" class="panel-body"></div>
+		        </div>
+	    	</div> 
+	    	<div class="col-md-4 col-sm-6">
+		        <div class="panel panel-default" id = "panel">
+			        <div class="panel-heading"><h4>Company Newsfeed</h4></div>
+			        <div id="company-body" class="panel-body"></div>
+		        </div>
+	    	</div> 
+	    </div>
     </div>
-
-    
-      
-      <div class="row">
-      <div class="col-md-12"><h2></h2></div>
-       <div class="col-md-4 col-sm-6">
-        <div class="panel panel-default" id = "panel">
-           <div class="panel-heading"><h4>Newsfeed</h4></div>
-          <div id="panel-body" class="panel-body">
-           
-
-          </div>
-          </div>
-         </div> 
-      </div>
-      
-      
-      
-    </div><!--/main-->
-
-
-  <!-- script references -->
- <!-- <script src="js/jquery-1.11.2.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/scripts.js"></script>-->
-  <script src="js/ajaxcallsforhome.js"></script>
-
-  </body>
+    <!--/main-->
+  	<script src="js/ajaxcallsforhome.js"></script>
+</body>
 </html>

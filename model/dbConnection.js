@@ -4,6 +4,14 @@ var AWS = require('aws-sdk');
 var dynomoDb;
 var pool;
 
+var redis = require("redis");
+var client = redis.createClient(6379,"127.0.0.1");
+//redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
+
+function getRedisConnection(){
+	return client;
+}
+
 var $credentials = {
 
 		"accessKeyId": "", 
@@ -31,7 +39,6 @@ function getDBconnection(){
 	 
 }
 
-
 exports.getPoolInstance = function(){
 	
 	if(pool != null){
@@ -58,3 +65,4 @@ exports.getPoolInstance = function(){
 };
 exports.getDBconnection = getDBconnection;
 exports.getAWSConnection = getAWS_SDK;
+exports.getRedisConnection = getRedisConnection;
