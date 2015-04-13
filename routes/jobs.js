@@ -7,14 +7,14 @@ var jquery = require('../public/js/jquery-1.11.2.min.js');
 var http = require('http');
 
 exports.getJobsByCompany = function(req, res) {
-
-	var companyId = req.params.companyId;
+	console.log("getJobsByCompany");
+	var companyId = req.session.companyId;
 	job.getJobsByCompanyId(companyId, function(err, data) {
 		if (err) {
 			res.writeHead(400);
 			res.end("Error while fetching data\n");
 		} else {
-
+			console.log("Jobs by company____"+data);
 			res.send(data);
 
 		}
@@ -49,7 +49,7 @@ exports.getJobs = function(req, res) {
 }
 
 exports.insertJobDetails = function(req, res) {
-	var companyId = req.body.companyId;
+	var companyId = req.session.companyId;
 	var companyName = req.body.companyName;
 	var jobTitle = req.body.jobTitle;
 	var jobDesc = req.body.jobDesc;
@@ -63,8 +63,7 @@ exports.insertJobDetails = function(req, res) {
 			res.writeHead(400);
 			res.end("Error while inserting data\n");
 		} else {
-			res.writeHead(200);
-			res.end("Record Inserted successfully");
+			res.send("Job inserted");
 
 		}
 	});
@@ -78,7 +77,7 @@ exports.deleteJob = function(req, res) {
 			res.end("Error while deleting record\n");
 		} else {
 			res.writeHead(200);
-			res.end("Record Deleted successfully");
+			res.end("Job Deleted Successfully\n");
 
 		}
 	});
@@ -100,22 +99,27 @@ exports.searchJobs = function(req,res){
 
 // Method to show Job Insert Page
 exports.showInsertJobDetailsView = function(req, res) {
-	res.render('insertJobDetails');
+	console.log("Inside showInsertJobDetailsView");
+	var companyName = req.params.companyName;
+	var companyId = req.session.userId;
+	console.log("CompanyName______"+companyName+ "Id_____"+companyId);
+	res.render('insertJobDetails',{companyName:companyName});
 }
 
 // Method to show Job Details Page
 
 exports.showJobDetailsView = function(req, res) {
 	var jobId = req.params.jobId;
+	var userid = req.session.userId;
 	console.log("Inside showJobDetailsView");
 	job.getJobDetails(jobId, function(err, data) {
 		if (err) {
 			res.writeHead(400);
 			res.end("Error while fetching data\n");
 		} else {
-			console.log(data);
-			res.render("jobDetails",{job:data});
-
+			
+			res.render("jobDetails",{job:data,userId:userid});
+			
 		}
 	});
 }
@@ -126,4 +130,8 @@ exports.showJobsView = function(req, res) {
 
 	res.render("jobsHomePage");
 
+}
+
+exports.showCompanyJobsView = function(req,res){
+	res.render("companyJobs");
 }

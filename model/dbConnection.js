@@ -8,7 +8,7 @@ var $credentials = {
 
 		"accessKeyId": "", 
 		"secretAccessKey": "", 
-		"region": "us-west-1"
+		"region": ""
 
 }
 
@@ -47,9 +47,9 @@ exports.getPoolInstance = function(){
 
 			password : '',
 
-			port : '3306',
+			port : '',
 
-			database : 'busi_soc_net'
+			database : ''
 
 		});
 		return pool;
