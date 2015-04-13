@@ -209,10 +209,34 @@ $(document).ready(function(){
     	            success: function( d ) {
     	               console.log(d);
     	            }
-    	          });
+    	        });
+    	        var userArr=[];
+    	        userArr.push(user);
+    	        var userObj = {
+        	        id : userArr,
+        	    };
+    	       
+    	        $.ajax({
+  			      type: "POST",
+  			      url: "/company/"+$("#companyId").val()+"/followers",
+  			      contentType: "application/json; charset=UTF-8",
+  			      dataType: 'json',
+  			      data: JSON.stringify(userObj),
+  			      crossDomain : true,
+  			      success: function( d ) {
+  			         console.log(d);
+  			         $("#followCompany").hide();
+  			         $("#unFollowCompany").show();
+  			      }
+  			    });
     	  });	
       });
       
+      $("#unFollowCompany").click(function(){
+    	  $("#unFollowCompany").hide();
+    	  $("#followCompany").show();
+      });
+
       $("#postJob").click(function(){
      	 var companyName = $("#name").val();
      	 console.log("Company Name____"+companyName);

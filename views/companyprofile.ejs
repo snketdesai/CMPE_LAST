@@ -48,12 +48,14 @@
           <div class="well" id="cprofile"> 
             <div id="cform">
               <h4>Company Profile</h4>
-              		<div class="form-group">
-                		<div class="col-xs-6 col-sm-4" style="margin-right:0px;"><img id="cLogo" src="..." class="img-responsive" alt="Responsive image"><br></div>
+              	<form>	
+              		<div class="form-group row">
+                		<div class="col-xs-6 col-sm-4">
+                			<img id="cLogo" src="..." class="img-responsive" alt="Responsive image">
+                		</div>
 	          		</div>
-                <form>
-	                <div class="form-group" >
-	                	<input id="companyId" type="hidden" class="form-control" value=<%= companyId %> >
+	                <div class="form-group">
+	                  <input id="companyId" type="hidden" class="form-control" value=<%= companyId %> >
 	                  <label for="companyName">Company Name</label>
 	                  <input id="name" type="text" class="form-control" disabled>
 	                </div>
@@ -65,7 +67,8 @@
 	                  <label for="website">Website Links</label>
 	                  <input id="urlText" type="text" class="form-control" id="website" disabled>
 	                </div>
-	                <button id="followCompany" class="btn btn-success pull-right" type="button">Follow Company</button><ul class="list-inline"><li></li></ul>
+	                <button id="followCompany" class="btn btn-success pull-right" type="button">Follow</button><ul class="list-inline"><li></li></ul>
+	                <button id="unFollowCompany" class="btn btn-success pull-right" type="button">UnFollow</button><ul class="list-inline"><li></li></ul>
                 </form>
               </div>
           </div>
@@ -85,6 +88,7 @@
 
   <!-- script references -->
 	  <script type="text/javascript">
+	  	$("#unFollowCompany").hide();
 	  	var cId = $("#companyId").val();
   		console.log("cId  "+cId);
   		if(cId === ''){
@@ -104,6 +108,33 @@
 	       			$("#cLogo").attr("src", "."+d.data[0].logo);	
 		       }
 		    }
+		});
+		
+		$.ajax({
+		    type: "GET",
+            url: "/getUserFromSession",
+            contentType: "application/json; charset=UTF-8",
+            dataType: 'json',
+            crossDomain : true,
+            success: function( user ) {
+	            var userId = {
+					id : user
+				};
+				$.ajax({
+				    type: "POST",
+		            url: "/company/"+cId+"/followerids",
+		            contentType: "application/json; charset=UTF-8",
+		            dataType: 'json',
+		            data: JSON.stringify(userId),
+		            crossDomain : true,
+		            success: function( d ) {
+		               if(d.msg === 'true'){
+		               		$("#unFollowCompany").show();
+		               		$("#followCompany").hide();
+		               }
+		            }
+				});
+            }
 		});
 	  </script>
   </body>

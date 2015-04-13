@@ -97,6 +97,7 @@ app.post('/company/:companyId/name',companyprofile.updateCompanyName);
 app.post('/company/:companyId/overview',companyprofile.updateCompanyOverview);
 app.post('/company/:companyId/url',companyprofile.updateCompanyURL);
 app.post('/company/:companyId/logo',companyprofile.changeCompanyLogo);
+app.post('/company/:companyId/followerids',companyprofile.getCompanyFollowers);
 app.post('/company/:companyId/followers',companyprofile.addCompanyFollower);
 app.post('/company/:companyId/status',companyprofile.updateCompanyStatus);
 app.post('/company/autocompletelist',companyprofile.autoCompleteCompanySearch);
