@@ -6,6 +6,8 @@ var cprofile = require('./companyprofile');
 var redis = require("redis");
 var client = redis.createClient(6379,"127.0.0.1");
 //redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
+var dbConn = require('../model/dbConnection');
+var dynamo = dbConn.getAWSConnection();
 
 exports.getSearchView = function(req,res){
 	res.render('search');
@@ -139,8 +141,39 @@ exports.updateCompanyURL = function(req,res){
 	});
 }
 
+exports.getCompanyFollowers = function(req,res){
+	var companyId = req.params.companyId;
+	var userId = req.body.id;
+	console.log(companyId+"  "+userId);
+	client.get("follow"+companyId, function(err, result) {
+		console.log(result);
+		if(result === null){
+			console.log("no data");
+		}else{
+			var flag = false;
+			var splitArr = result.split(",");
+			for (i = 0; i < splitArr.length; i++) { 
+				console.log(splitArr[1]);
+			    if(splitArr[i] === userId.toString()){
+			    	flag = true;
+			    }
+			}
+		}
+		if(flag){
+			res.json({msg:'true'});
+		}else{
+			res.json({msg:'false'});
+		}
+	});
+}
+
 exports.addCompanyFollower = function(req,res){
 	var companyId = parseInt(req.params.companyId);
+	var userId = req.body.id;
+	
+	client.get("follow"+companyId, function(err, result) {
+		client.set("follow"+companyId, result+","+userId);
+	});
 	
 	db.table('companyprofile').where('companyId').eq(companyId).increment({
 		numFollowers : 1
@@ -152,7 +185,32 @@ exports.addCompanyFollower = function(req,res){
 			console.log( data );
 			res.status(200).json({msg:'follower added'});
 		}
-    })
+    });
+	
+	
+	/*dynamo.updateItem(
+	    {"TableName":"companyprofile",
+        "Key":{
+            "companyId":{"N":req.params.companyId}
+         },
+        "AttributeUpdates":{
+        	"followingUsers":{
+        		"Value" :{
+        			"SS":userId
+        		},
+        	
+        	"Action":"ADD"
+        	}
+        }
+	    }, 
+	    function(err,data) {
+	    	if(!err){
+	    		//res.status(200).json({msg:'user update success'});
+	    		
+	    	}else{
+	    		console.log('error: '+err);
+	    	}
+	});*/
 }
 
 exports.updateCompanyStatus = function(req,res){
@@ -174,14 +232,16 @@ exports.updateCompanyStatus = function(req,res){
 
 exports.autoCompleteCompanySearch = function(req,res){
 	var query = req.body.query+"*";
+	console.log(query);
 	client.keys(query, function(err, reply) {
-	    res.send(reply);
+	    console.log(reply);
+		res.send(reply);
 	});
 }
 
 exports.companySearch = function(req,res){
 	var query = req.body.name+"*";
-	
+	console.log(query);
 	client.keys(query, function(err, ids) {
 		var result = [];
 		var counter = 0;
@@ -193,6 +253,7 @@ exports.companySearch = function(req,res){
 	    				result.push(data);
 	    				counter++;
 	    				if(counter == ids.length){
+	    					console.log(result);
 	    					res.send(JSON.stringify(result));
 	    				}
 	    			}

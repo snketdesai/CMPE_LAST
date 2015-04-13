@@ -9,7 +9,7 @@ var client = redis.createClient(6379,"127.0.0.1");
 //redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
 var db = dbConn.getDBconnection();
 
-// Method to get all jobs from jobs table
+// Method to get all jobs from jobs tableth
 
 exports.getAllJobs = function(callback) {
 	db.table('jobs').scan(function(err, data) {
