@@ -5,7 +5,7 @@
 var dbConn = require('../model/dbConnection');
 var uuid = require('node-uuid');
 var redis = require("redis");
-var client = redis.createClient(6379,"redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com");
+var client = redis.createClient(6379,"127.0.0.1");
 //redis-cmpe282.cysnho.0001.usw1.cache.amazonaws.com
 var db = dbConn.getDBconnection();
 
