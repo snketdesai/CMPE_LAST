@@ -16,7 +16,7 @@ var $credentials = {
 
 		"accessKeyId": "", 
 		"secretAccessKey": "", 
-		"region": ""
+		"region": "us-west-1"
 
 }
 

@@ -106,9 +106,28 @@ function appendNewsFeed(id)
 	       //delete name1;
 	    }
 	});
-
-
 }
+
+$.ajax({
+    type: "GET",
+    url: "/userrec/"+$("#userid").val(),
+    crossDomain : true,
+    contentType: "application/json; charset=UTF-8",
+    dataType: 'json',
+    success: function( d ) {
+       
+       
+       var length_of_user_recommended = d.Item.recommended_user.NS.length;
+       
+       for(var i=0;i<length_of_user_recommended;i++)
+    	   {
+    	   		var recuser = getName(d.Item.recommended_user.NS[i]);
+    	   		var html = '<li class="list-group-item">'+recuser+'</li>';
+    	   		$('#userrec-body').append($(html));
+    	   }   
+      
+    }
+});
 
 function getName(id){
 	

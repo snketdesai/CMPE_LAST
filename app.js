@@ -12,6 +12,7 @@ var profile = require('./routes/profile');
 var job = require('./routes/jobs');
 var jobapp = require('./routes/jobapplication');
 var user = require('./routes/users');
+var rec = require('./routes/recommend');
 var companyprofile = require('./routes/companyprofile');
 var index = require('./routes/index');
 var events = require('events');
@@ -52,6 +53,8 @@ app.get('/logout',user.logout);
 app.get('/getUserFromSession',user.getUserFromSession);
 app.post('/checkForExistingUser',user.IsUserPresent);
 app.get('/searchuser/:str', user.searchUsers);
+
+app.get('/userrec/:userId', rec.getRecommendedUsers);
 
 app.post('/application', jobapp.postJobApplication);
 app.get('/userapplication/:userId', jobapp.getJobApplication);
