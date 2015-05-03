@@ -89,6 +89,8 @@ app.get('/company/jobs',job.getJobsByCompany);
 app.post('/company/:companyId/jobs/',job.insertJobDetails);
 app.get('/company/:companyId/jobs/:jobId',job.deleteJob);
 
+app.get('/loadJobData',job.loadJobs);
+
 app.get('/searchpage', companyprofile.getSearchView);
 app.get('/companyregistrationpage', companyprofile.getCompanyRegisterView);
 app.get('/companyhomepage', companyprofile.getCompanyView);
@@ -108,6 +110,7 @@ app.post('/company/autocompletelist',companyprofile.autoCompleteCompanySearch);
 app.post('/company/companylist',companyprofile.companySearch);
 
 app.post('/dataloader',companyprofile.loadcompanyIds);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
