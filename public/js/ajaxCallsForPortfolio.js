@@ -86,7 +86,7 @@ $(document).ready(function(){
     } else {
         
         // $.ajax(); Do Follow
-    	alert('else');
+    	//alert('else');
         $button.css('color','green');
         $button.addClass('following');
         $button.text('Following');

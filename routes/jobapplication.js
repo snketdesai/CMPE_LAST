@@ -19,8 +19,9 @@ exports.postJobApplication = function(req,res){
 			  res.end("Error while inserting data\n");
 		}
 		else{	
-			res.writeHead(200);
-			 res.end("Job application inserted successfully.");
+			//res.writeHead(200);
+			 //res.end("Job application inserted successfully.");
+			 res.redirect('/userapplication/'+userId);
 		}
 	});
 }

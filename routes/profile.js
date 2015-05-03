@@ -199,6 +199,7 @@ exports.getCompanyNewsFeed = function(req,res){
 					client.get(companyArr[i], function(err, result) {
 						db.table('companyprofile').having('companyId').eq(parseInt(result)).scan(
 							function(err, data) {
+								console.log(data);
 							if(!err){
 								var postStr = '{"key":"'+data[0].companyName+'","value":"'+data[0].status+'"}';
 								posts.push(postStr);
