@@ -1,0 +1,119 @@
+﻿Merge branch 'master' of https://github.com/snketdesai/CMPE_LAST
+merge changes
+Conflicts:
+	app.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   app.js
+#	new file:   csvnew.csv
+#	modified:   model/dbConnection.js
+#	modified:   model/jobQueries.js
+#	new file:   node_modules/basic-csv/.npmignore
+#	new file:   node_modules/basic-csv/LICENSE
+#	new file:   node_modules/basic-csv/README.md
+#	new file:   node_modules/basic-csv/index.js
+#	new file:   node_modules/basic-csv/node_modules/csv/.travis.yml
+#	new file:   node_modules/basic-csv/node_modules/csv/LICENSE
+#	new file:   node_modules/basic-csv/node_modules/csv/Makefile
+#	new file:   node_modules/basic-csv/node_modules/csv/README.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/changes.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/columns.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/coverage.html
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/from.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/index.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/parser.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/stringifier.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/to.md
+#	new file:   node_modules/basic-csv/node_modules/csv/doc/transformer.md
+#	new file:   node_modules/basic-csv/node_modules/csv/index.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/doc.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/from.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/generator.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/index.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/options.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/parser.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/state.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/stringifier.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/to.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/transformer.js
+#	new file:   node_modules/basic-csv/node_modules/csv/lib/utils.js
+#	new file:   node_modules/basic-csv/node_modules/csv/package.json
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/columns.in
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/columns.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/duplicate-headers.in
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/duplicate-headers.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/new-columns.in
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/new-columns.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/perf.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/sample-stdin.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/sample-stdout.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/sample.in
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/sample.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/simple.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/string.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/transform.js
+#	new file:   node_modules/basic-csv/node_modules/csv/samples/tsv.js
+#	new file:   node_modules/basic-csv/node_modules/csv/src/doc.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/from.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/generator.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/index.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/options.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/parser.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/state.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/stringifier.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/to.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/transformer.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/src/utils.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/columns.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/delimiter.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/eof.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/escape.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/event.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/from.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/from/file.csv
+#	new file:   node_modules/basic-csv/node_modules/csv/test/from/file_bom.csv
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/array_to_stream.out
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/encoding_latin1.csv
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/encoding_latin1.tmp
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/encoding_utf8.csv
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/null.out
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/sample.in
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/sample.out
+#	new file:   node_modules/basic-csv/node_modules/csv/test/fromto/string_to_stream.out
+#	new file:   node_modules/basic-csv/node_modules/csv/test/header.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/mocha.opts
+#	new file:   node_modules/basic-csv/node_modules/csv/test/pipe.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/quotes.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/rowDelimiter.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/to.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/transform.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/trim.coffee
+#	new file:   node_modules/basic-csv/node_modules/csv/test/write.coffee
+#	new file:   node_modules/basic-csv/node_modules/underscore/LICENSE
+#	new file:   node_modules/basic-csv/node_modules/underscore/README.md
+#	new file:   node_modules/basic-csv/node_modules/underscore/package.json
+#	new file:   node_modules/basic-csv/node_modules/underscore/underscore-min.js
+#	new file:   node_modules/basic-csv/node_modules/underscore/underscore-min.map
+#	new file:   node_modules/basic-csv/node_modules/underscore/underscore.js
+#	new file:   node_modules/basic-csv/package.json
+#	modified:   public/access.json
+#	new file:   public/uploads/vmware.jpg
+#	modified:   routes/jobs.js
+#
+
