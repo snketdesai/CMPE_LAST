@@ -129,6 +129,26 @@ $.ajax({
     }
 });
 
+$.ajax({
+    type: "GET",
+    url: "/jobrec/"+$("#userid").val(),
+    crossDomain : true,
+    contentType: "application/json; charset=UTF-8",
+    dataType: 'json',
+    success: function( d ) {
+       
+       
+       var length_of_job_recommended = d.Item.recommended_job.SS.length;
+       
+       for(var i=0;i<length_of_job_recommended;i++)
+    	   {
+    	   		var recjob = d.Item.recommended_job.SS[i];
+    	   		var html = '<li class="list-group-item">'+recjob+'</li>';
+    	   		$('#jobrec-body').append($(html));
+    	   }   
+      
+    }
+});
 function getName(id){
 	
 	var name;

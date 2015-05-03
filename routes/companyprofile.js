@@ -254,6 +254,15 @@ exports.companyData = function(companyId, callback){
 	});
 }
 
+exports.loadcompanyIds = function(req, res){
+	db.table('companyprofile').scan(function(err, data) {
+		for(var i=0;i<data.length;i++){
+			console.log(data[i].companyName+"  "+data[i].companyId);
+			client.set(data[i].companyName, data[i].companyId);
+		}	
+	});
+}
+
 exports.logout = function(req, res){
 	req.session.companyId = null;
 	res.render('login');

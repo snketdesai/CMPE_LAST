@@ -14,8 +14,24 @@ exports.getRecommendedUsers = function(req, res){
 			res.end("Error getting the recommended users");
 		}else{
 			res.send(data);
-			console.log(data.Item.recommended_user.NS[0]);
-			console.log(data.Item.recommended_user.NS.length);
+			//console.log(data.Item.recommended_user.NS[0]);
+			//console.log(data.Item.recommended_user.NS.length);
+		}
+	});
+}
+
+exports.getRecommendedJobs =  function(req,res){
+	var userid = req.params.userId;
+	console.log("User ID: " + userid);
+	console.log("Getting the recommended jobs");
+	rec.getJobRecommendation(userid, function(err,data){
+		if(err){
+			res.writeHead(400);
+			res.end("Error getting the recommended jobs");
+		}else{
+			res.send(data);
+			console.log("Successfully recieved the data");
+			console.log(data.Item.recommended_job.SS[0]);
 		}
 	});
 }

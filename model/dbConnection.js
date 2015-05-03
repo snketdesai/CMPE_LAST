@@ -14,8 +14,8 @@ function getRedisConnection(){
 
 var $credentials = {
 
-		"accessKeyId": "", 
-		"secretAccessKey": "", 
+		"accessKeyId": "AKIAIB5XNPU3ZK72HZEA", 
+		"secretAccessKey": "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", 
 		"region": "us-west-1"
 
 }

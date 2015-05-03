@@ -55,6 +55,7 @@ app.post('/checkForExistingUser',user.IsUserPresent);
 app.get('/searchuser/:str', user.searchUsers);
 
 app.get('/userrec/:userId', rec.getRecommendedUsers);
+app.get('/jobrec/:userId', rec.getRecommendedJobs);
 
 app.post('/application', jobapp.postJobApplication);
 app.get('/userapplication/:userId', jobapp.getJobApplication);
@@ -105,6 +106,8 @@ app.post('/company/:companyId/followers',companyprofile.addCompanyFollower);
 app.post('/company/:companyId/status',companyprofile.updateCompanyStatus);
 app.post('/company/autocompletelist',companyprofile.autoCompleteCompanySearch);
 app.post('/company/companylist',companyprofile.companySearch);
+
+app.post('/dataloader',companyprofile.loadcompanyIds);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
