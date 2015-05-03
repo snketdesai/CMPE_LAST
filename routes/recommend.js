@@ -30,8 +30,8 @@ exports.getRecommendedJobs =  function(req,res){
 			res.end("Error getting the recommended jobs");
 		}else{
 			res.send(data);
-			console.log("Successfully recieved the data");
-			console.log(data.Item.recommended_job.SS[0]);
+			//console.log("Successfully recieved the data");
+			//console.log(data.Item.recommended_job.SS[0]);
 		}
 	});
 }

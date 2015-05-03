@@ -262,6 +262,133 @@ exports.loadcompanyIds = function(req, res){
 		}	
 	});
 }
+/*
+"skill":{
+	"Value" :{
+		"SS": skill
+	},
+"Action":"ADD"
+},
+"certification":{
+	"Value" :{
+		"SS": certification
+	},
+"Action":"ADD"
+},
+"user_followed":{
+	"Value" :{
+		"SS": user_followed
+	},
+"Action":"ADD"
+},
+"post":{
+	"Value" :{
+		"SS": post
+	},
+"Action":"ADD"
+},
+"company_followed":{
+	"Value" :{
+		"SS": company_followed
+	},
+"Action":"ADD"
+},*/
+var dynamo = dbConn.getAWSConnection();
+var basicCSV = require("basic-csv");
+exports.addUserProfiles = function(req, res){
+	basicCSV.readCSV("csvnew.csv", {
+		  dropHeader: true
+		}, function (error, rows) {
+		  console.log(rows.length);
+		  for(var i=0;i<1;i++){
+			  //if(i==0){
+			  var row = rows[i];
+			  //console.log(row);
+			  var id = i+1;
+			  var college = [];
+			  college.push(row[0].replace("'","").replace("'",""));
+			  var location = [];
+			  location.push(row[1].replace("'","").replace("'",""));
+			  var company = [];
+			  company.push(row[2].replace("'","").replace("'",""));
+			  var job_title = [];
+			  job_title.push(row[3].replace("'","").replace("'",""));
+			  var degree = [];
+			  degree.push(row[4].replace("'","").replace("'",""));
+			  var post = [];
+			  post.push("Hi");
+			  var user_followed = [];
+			  user_followed.push("");
+			  var company_followed = [];
+			  company_followed.push("");
+			  var skill = [];
+			  skill.push("");
+			  var certification = [];
+			  certification.push("");
+			  console.log(college);
+			  console.log(location);
+			  console.log(company);
+			  console.log(job_title);
+			  console.log(degree);
+			  dynamo.updateItem(
+					    {"TableName":"user_profile",
+					        "Key":{
+					            "user_id":{
+					            	"S":id+""
+					            	}
+					        },
+					        "AttributeUpdates":{
+					        	"bio":{
+					        		"Value" :{
+					        			"S":"!!!"
+					        		},
+					        	"Action":"PUT"
+					        	},
+					        	"status":{
+					        		"Value" :{
+					        			"S":"Hi"
+					        		},
+					        	"Action":"PUT"
+					        	},
+					        	"college":{
+					        		"Value" :{
+					        			"SS": college
+					        		},
+					        	"Action":"ADD"
+					        	},
+					        	"location":{
+					        		"Value" :{
+					        			"SS": location
+					        		},
+					        	"Action":"ADD"
+					        	},
+					        	"company":{
+					        		"Value" :{
+					        			"SS": company
+					        		},
+					        	"Action":"ADD"
+					        	},
+					        	"job_title":{
+					        		"Value" :{
+					        			"SS": job_title
+					        		},
+					        	"Action":"ADD"
+					        	},
+					        	"degree":{
+					        		"Value" :{
+					        			"SS": degree
+					        		},
+					        	"Action":"ADD"
+					        	}
+					        }
+					    }, function(err,data) {
+					    	/*console.log("Error______"+err);
+							console.log(data);*/
+					});
+			  //}
+			}
+		});
+}
 
 exports.logout = function(req, res){
 	req.session.companyId = null;

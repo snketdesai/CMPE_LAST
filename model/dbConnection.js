@@ -14,8 +14,8 @@ function getRedisConnection(){
 
 var $credentials = {
 
-		"accessKeyId": "", 
-		"secretAccessKey": "", 
+		"accessKeyId": "AKIAJMDAJG5DEC4CIWXA", 
+		"secretAccessKey": "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", 
 		"region": "us-west-1"
 
 }
@@ -56,7 +56,7 @@ exports.getPoolInstance = function(){
 
 			port : '3306',
 
-			database : 'busi_soc_net'
+			database : 'linkedin_prototype'
 
 		});
 		return pool;

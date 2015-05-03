@@ -44,18 +44,18 @@ $.ajax({
        //alert(d);
      // $("#bio").val(d.Item.bio.S);
     //   $("#status").val(d.Item.status.S);
-       
-       var length_of_user_followed = d.Item.user_followed.SS.length;
-       
-       for(var i=0;i<length_of_user_followed && i<3 ;i++)
+       if(d.Item.user_followed){
+    	   var length_of_user_followed = d.Item.user_followed.SS.length;
+           
+           for(var i=0;i<length_of_user_followed && i<3 ;i++)
     	   {
     	   		//var html = '<li class="list-group-item">'+d.Item.user_followed.SS[i]+'</li>';
     	   		//$('#listForUser').append($(html));
     	  
     	   appendNewsFeed(d.Item.user_followed.SS[i]);
     	   		
-    	   }
-       
+    	   }   
+       }       
     }
 });
 
@@ -81,6 +81,7 @@ function appendNewsFeed(id)
 	    	
 	    	
 	    	//alert(name);
+	       if(d.Item.post){
 	       var length_of_post = d.Item.post.SS.length;
 	       
 	       for(var i=0;i<length_of_post && i<1 ;i++)
@@ -104,6 +105,7 @@ function appendNewsFeed(id)
 		    	$('#panel-body').append($(html));
 	    	   }
 	       //delete name1;
+	       }
 	    }
 	});
 }
@@ -116,16 +118,16 @@ $.ajax({
     dataType: 'json',
     success: function( d ) {
        
-       
-       var length_of_user_recommended = d.Item.recommended_user.NS.length;
-       
-       for(var i=0;i<length_of_user_recommended;i++)
+       if(d.Item.recommended_user){
+    	   var length_of_user_recommended = d.Item.recommended_user.NS.length;
+           
+           for(var i=0;i<length_of_user_recommended;i++)
     	   {
     	   		var recuser = getName(d.Item.recommended_user.NS[i]);
     	   		var html = '<li class="list-group-item">'+recuser+'</li>';
     	   		$('#userrec-body').append($(html));
-    	   }   
-      
+    	   }    
+       }
     }
 });
 
@@ -137,15 +139,16 @@ $.ajax({
     dataType: 'json',
     success: function( d ) {
        
-       
-       var length_of_job_recommended = d.Item.recommended_job.SS.length;
-       
-       for(var i=0;i<length_of_job_recommended;i++)
-    	   {
-    	   		var recjob = d.Item.recommended_job.SS[i];
-    	   		var html = '<li class="list-group-item">'+recjob+'</li>';
-    	   		$('#jobrec-body').append($(html));
-    	   }   
+       if(d.Item.recommended_job){
+	       var length_of_job_recommended = d.Item.recommended_job.SS.length;
+	       
+	       for(var i=0;i<length_of_job_recommended;i++)
+		   {
+		   		var recjob = d.Item.recommended_job.SS[i];
+		   		var html = '<li class="list-group-item">'+recjob+'</li>';
+		   		$('#jobrec-body').append($(html));
+		   } 
+       }
       
     }
 });

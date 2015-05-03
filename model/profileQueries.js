@@ -207,29 +207,60 @@ exports.insertPost = function(userid,post,callback){
 					callback(err, data);
 		});
 	
-},
-
-
+};
+var db = dbConn.getDBconnection();
 exports.getProfileInfo = function(userid,callback){
-	
-	dynamo.getItem({
-		"Key":{ 
-		      "user_id" : {
-		          "S" : userid
-		        }
-		},
-		"AttributesToGet":[
-			"bio","certification","skill","college","status","company_followed","user_followed","post"
-		],
-		"TableName":"user_profile"	
-		},
-		
-		function(err,data){
-			if(err)
-				console.log("error:"+err);
+	/*db.table('user_profile').where('user_id').eq(userid).get(function( err, data ) {
+        console.log( err, data );
+        console.log(data);
+        console.log(Object.keys(data).length === 0);
+        var obj = JSON.parse(JSON.stringify(data));
+        console.log(data.keys(obj).length === 0);
+        if(obj.length > 1){
+        	console.log( "------" );
+        }else{
+        	console.log( "!!!!!!" );
+        }
+    });*/
+	/*db.table('user_profile').having('user_id').eq(userid).scan(function(err, data) {
+		if(data === ""){
+			console.log('nodata');
+			data = "nodata";
 			callback(err,data);
-	})
-		
+		}else if(err){
+			console.log('-------');
+			console.log(err);
+		}else{*/
+			dynamo.getItem({
+				"Key":{ 
+				      "user_id" : {
+				          "S" : userid
+				        }
+				},
+				"AttributesToGet":[
+					"bio","certification","skill","college","status","company_followed","user_followed","post"
+				],
+				"TableName":"user_profile"	
+				},
+				
+				function(err,data){
+					console.log("------"+data);
+					console.log(data);
+					console.log("------"+data);
+					if(err){
+						console.log("error: "+err);
+						
+					}else if(Object.keys(data).length===0){
+						console.log("------"+data);
+						console.log(data);
+						console.log('nodata');
+						data = "nodata";
+						
+					}
+					callback(err,data);
+			});
+		//}
+	//});
 }
 
 

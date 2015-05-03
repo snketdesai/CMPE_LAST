@@ -188,26 +188,30 @@ exports.getUserProfile = function(req,res){
 exports.getCompanyNewsFeed = function(req,res){
 	var userId = req.params.userId;
 	profile.getProfileInfo(userId,function(err,data){
-		if(data != null && typeof data.Item.company_followed != "undefined"){
-			var companyArr = data.Item.company_followed.SS;
-			var posts = [];
-			var counter = 0;
-			for(i=0;i<companyArr.length;i++){
-				client.get(companyArr[i], function(err, result) {
-					db.table('companyprofile').having('companyId').eq(parseInt(result)).scan(
-						function(err, data) {
-						if(!err){
-							var postStr = '{"key":"'+data[0].companyName+'","value":"'+data[0].status+'"}';
-							posts.push(postStr);
-							counter++;
-		    				if(counter == companyArr.length){
-		    					res.send(JSON.stringify(posts));
-		    				}
-						}else{
-							res.send('no data');
-						}
+		if(data != "nodata"){
+			if(typeof data.Item.company_followed === "undefined"){
+				res.send('no data');
+			}else{
+				var companyArr = data.Item.company_followed.SS;
+				var posts = [];
+				var counter = 0;
+				for(var i=0;i<companyArr.length;i++){
+					client.get(companyArr[i], function(err, result) {
+						db.table('companyprofile').having('companyId').eq(parseInt(result)).scan(
+							function(err, data) {
+							if(!err){
+								var postStr = '{"key":"'+data[0].companyName+'","value":"'+data[0].status+'"}';
+								posts.push(postStr);
+								counter++;
+			    				if(counter == companyArr.length){
+			    					res.send(JSON.stringify(posts));
+			    				}
+							}else{
+								res.send('no data');
+							}
+						});
 					});
-				});
+				}
 			}
 		}else{
 			res.send('no data');

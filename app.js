@@ -108,6 +108,7 @@ app.post('/company/autocompletelist',companyprofile.autoCompleteCompanySearch);
 app.post('/company/companylist',companyprofile.companySearch);
 
 app.post('/dataloader',companyprofile.loadcompanyIds);
+app.post('/dataloaderuser',companyprofile.addUserProfiles);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -17,30 +17,34 @@ $.ajax({
        var username = getName(sessionStorage.userid);
        //alert(username);
        $('#username').html(username);
+       if(d.Item.college){
+	       var length_of_college = d.Item.college.SS.length;
+	       
+	       for(var i=0;i<length_of_college;i++)
+		   {
+		   		var html = '<li class="list-group-item">'+d.Item.college.SS[i]+'</li>';
+		   		$('#listForCollege').append($(html));
+		   }
+       }
+       if(d.Item.skill){
+	       var length_of_skill = d.Item.skill.SS.length;
+	       
+	       for(var i=0;i<length_of_skill;i++)
+		   {
+		   		var html = '<li class="list-group-item">'+d.Item.skill.SS[i]+'</li>';
+		   		$('#listForSkill').append($(html));
+		   }
+       }
+       if(d.Item.certification){
+    	   var length_of_certificate = d.Item.certification.SS.length;
+           
+           for(var i=0;i<length_of_certificate;i++)
+    	   {
+    	   		var html = '<li class="list-group-item">'+d.Item.certification.SS[i]+'</li>';
+    	   		$('#listForCertificate').append($(html));
+    	   }  
+       }
        
-       var length_of_college = d.Item.college.SS.length;
-       
-       for(var i=0;i<length_of_college;i++)
-	   {
-	   		var html = '<li class="list-group-item">'+d.Item.college.SS[i]+'</li>';
-	   		$('#listForCollege').append($(html));
-	   }
-       
-       var length_of_skill = d.Item.skill.SS.length;
-       
-       for(var i=0;i<length_of_skill;i++)
-	   {
-	   		var html = '<li class="list-group-item">'+d.Item.skill.SS[i]+'</li>';
-	   		$('#listForSkill').append($(html));
-	   }
-       
-       var length_of_certificate = d.Item.certification.SS.length;
-       
-       for(var i=0;i<length_of_certificate;i++)
-	   {
-	   		var html = '<li class="list-group-item">'+d.Item.certification.SS[i]+'</li>';
-	   		$('#listForCertificate').append($(html));
-	   }
        
        if(d.Item.company_followed)
     	   {
@@ -69,7 +73,7 @@ $.ajax({
 });
 
 $(document).ready(function(){
-	$('button.followButton').live('click', function(e){
+	$('button.followButton').on('click', function(e){
     e.preventDefault();
     $button = $(this);
     if($button.hasClass('following')){
@@ -82,14 +86,14 @@ $(document).ready(function(){
     } else {
         
         // $.ajax(); Do Follow
-    	
+    	alert('else');
         $button.css('color','green');
         $button.addClass('following');
         $button.text('Following');
         
         var user = new Array();
         user.push(sessionStorage.userid);
-        
+        console.log(sessionStorage.userid);
         var user_followed = {
         		user_followed : user
         };

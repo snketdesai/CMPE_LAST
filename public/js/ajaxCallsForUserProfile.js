@@ -18,33 +18,34 @@ $.ajax({
        $("#status").val(d.Item.status.S);
        
        
-       
-       
-       $("#college").val(d.Item.college.SS[0]);
-       
-       $("#skill").val(d.Item.skill.SS[0]);
-       
-       $("#certification").val(d.Item.certification.SS[0]);
-       
-       var length_of_user_followed = d.Item.user_followed.SS.length;
-       
-       for(var i=0;i<length_of_user_followed;i++)
+       if(d.Item.college){
+    	   $("#college").val(d.Item.college.SS[0]);
+       }
+       if(d.Item.skill){
+    	   $("#skill").val(d.Item.skill.SS[0]); 
+       }
+       if(d.Item.certification){
+    	   $("#certification").val(d.Item.certification.SS[0]);
+       }
+       if(d.Item.user_followed){
+    	   var length_of_user_followed = d.Item.user_followed.SS.length;
+    	   for(var i=0;i<length_of_user_followed;i++)
     	   {
     	   		var usernameid = getName(d.Item.user_followed.SS[i]);
     	   		var html = '<li class="list-group-item">'+usernameid+'</li>';
     	   		$('#listForUser').append($(html));
     	   }
+       }
        
-       var length_of_company = d.Item.company_followed.SS.length;
-       
-       for(var i=0;i<length_of_company;i++)
-	   {
-	   		var html = '<li class="list-group-item">'+d.Item.company_followed.SS[i]+'</li>';
-	   		$('#listForCompany').append($(html));
-	   }
-       
-       
-      
+       if(d.Item.company_followed){
+    	   var length_of_company = d.Item.company_followed.SS.length;
+           
+           for(var i=0;i<length_of_company;i++)
+    	   {
+    	   		var html = '<li class="list-group-item">'+d.Item.company_followed.SS[i]+'</li>';
+    	   		$('#listForCompany').append($(html));
+    	   }  
+       }
        //$("#overviewText").val(d.data[0].overview);
        //$("#urlText").val(d.data[0].url);
     }
