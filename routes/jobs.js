@@ -96,6 +96,17 @@ exports.searchJobs = function(req,res){
 	});
 }
 
+exports.loadJobs = function(req,res){
+	job.loadJobsInRedis(function(err,data){
+		if(err){
+			res.writeHead(400);
+			res.end("Error while loading jobs\n");
+		}else{
+			res.send("Jobs data loaded\n");
+		}
+	});
+}
+
 // Method to show Job Insert Page
 exports.showInsertJobDetailsView = function(req, res) {
 	console.log("Inside showInsertJobDetailsView");

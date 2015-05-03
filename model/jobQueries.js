@@ -138,3 +138,26 @@ exports.searchJobs = function(searchTerm,callback){
 	    });
 	});
 }
+
+// Method to load data in Redis
+
+exports.loadJobsInRedis = function(callback){
+	db.table('jobs').scan(function(err, data) {
+		for(var i=0;i<data.length;i++){
+			console.log(data[i]);
+			var companyName = data[i].companyName;
+			var jobTitle = data[i].jobTitle;
+			var expiryDate = data[i].expiryDate;
+			var location = data[i].location;
+			var jobId = data[i].jobId;
+			var jsonObj = {jobId : jobId, companyName : companyName,jobTitle : jobTitle, location : location,expiryDate : expiryDate};
+			console.log("Json Obj_____"+JSON.stringify(jsonObj));
+			var jobObj = JSON.stringify(jsonObj);
+			client.sadd(companyName.toLowerCase(), jobObj);
+			client.sadd(jobTitle.toLowerCase(), jobObj);
+			client.sadd(location.toLowerCase(),jobObj);
+		}	
+		callback(err,data);
+	});
+}
+
