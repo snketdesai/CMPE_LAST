@@ -134,6 +134,22 @@ exports.showJobDetailsView = function(req, res) {
 	});
 }
 
+exports.showJobDetailsViewAJAX = function(req, res) {
+	var jobId = req.params.jobId;
+	var userid = req.session.userId;
+	console.log("Inside showJobDetailsView");
+	job.getJobDetails(jobId, function(err, data) {
+		if (err) {
+			res.writeHead(400);
+			res.end("Error while fetching data\n");
+		} else {
+			
+			res.send(data);
+			
+		}
+	});
+}
+
 // Method to show Job Home Page
 
 exports.showJobsView = function(req, res) {

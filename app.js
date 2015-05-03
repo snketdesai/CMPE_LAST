@@ -79,6 +79,7 @@ app.get('/userprofile',profile.getUserProfile); //profile page
 
 app.get('/insertJobDetailsPage/:companyName',job.showInsertJobDetailsView);
 app.get('/showJobDetailsPage/:jobId',job.showJobDetailsView);
+app.get('/showJobDetailsPageAJAX/:jobId',job.showJobDetailsViewAJAX);
 app.get('/showJobs',job.showJobsView);
 app.get('/showJobsByCompany',job.showCompanyJobsView);
 

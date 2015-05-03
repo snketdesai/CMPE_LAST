@@ -144,8 +144,9 @@ $.ajax({
 	       
 	       for(var i=0;i<length_of_job_recommended;i++)
 		   {
-		   		var recjob = d.Item.recommended_job.SS[i];
-		   		var html = '<li class="list-group-item">'+recjob+'</li>';
+		   		var recjob = getJobDetails(d.Item.recommended_job.SS[i]);
+		   		console.log('recjob:' +recjob);
+		   		var html = '<li class="list-group-item">Company: '+recjob.company+'<br><br> Position: '+recjob.position+'<br><br> Description: '+recjob.description+'</li>';
 		   		$('#jobrec-body').append($(html));
 		   } 
        }
@@ -173,6 +174,37 @@ function getName(id){
 	});
 	
 	return name;
+}
+
+function getJobDetails(id){
+	
+	var data;
+	
+	
+	$.ajax({
+	    type: "GET",
+	    url: "/showJobDetailsPageAJAX/"+id,
+	    crossDomain : true,
+	    contentType: "application/json; charset=UTF-8",
+	    dataType: 'json',
+	    async : false,
+	    success: function( d ) {
+	    	console.log("Printing D inside getJobDetails" + JSON.stringify(d));
+	    	data = {
+	    			position: d.jobTitle,
+	    			description: d.jobDescription,
+	    			company: d.companyName
+	    	};
+	    	//name = d[0].firstname + " " + d[0].lastname;
+	    
+	    	//return data;
+	    }, error: function(e){
+	    	console.log("Inside AJAX ERROR::::::::"+JSON.stringify(e));
+	    }
+	
+	});
+	
+	return data;
 }
 
 $(document).ready(function(){
