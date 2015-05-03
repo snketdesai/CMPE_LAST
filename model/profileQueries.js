@@ -111,6 +111,102 @@ exports.updateCollege = function(userid,college,callback){
 		});
 }
 
+exports.updateCompany = function(userid,company,callback){
+	
+	dynamo.updateItem(
+		    {"TableName":"user_profile",
+		        "Key":{
+		            "user_id":{"S":userid}
+		              
+		        },
+		        "AttributeUpdates":{
+		        	"company":{
+		        		"Value" :{
+		        			"SS":company
+		        		},
+		        	
+		        	"Action":"ADD"
+		        	}
+		        }
+		    }, function(err,data) {
+		    	if(err)
+		    		console.log("Error______"+err);
+					callback(err, data);
+		});
+}
+
+exports.updateDegree = function(userid,degree,callback){
+	
+	dynamo.updateItem(
+		    {"TableName":"user_profile",
+		        "Key":{
+		            "user_id":{"S":userid}
+		              
+		        },
+		        "AttributeUpdates":{
+		        	"degree":{
+		        		"Value" :{
+		        			"SS":degree
+		        		},
+		        	
+		        	"Action":"ADD"
+		        	}
+		        }
+		    }, function(err,data) {
+		    	if(err)
+		    		console.log("Error______"+err);
+					callback(err, data);
+		});
+}
+
+exports.updateJobTitle = function(userid,job_title,callback){
+	
+	dynamo.updateItem(
+		    {"TableName":"user_profile",
+		        "Key":{
+		            "user_id":{"S":userid}
+		              
+		        },
+		        "AttributeUpdates":{
+		        	"job_title":{
+		        		"Value" :{
+		        			"SS":job_title
+		        		},
+		        	
+		        	"Action":"ADD"
+		        	}
+		        }
+		    }, function(err,data) {
+		    	if(err)
+		    		console.log("Error______"+err);
+					callback(err, data);
+		});
+}
+
+exports.updateLocation = function(userid,location,callback){
+	
+	dynamo.updateItem(
+		    {"TableName":"user_profile",
+		        "Key":{
+		            "user_id":{"S":userid}
+		              
+		        },
+		        "AttributeUpdates":{
+		        	"location":{
+		        		"Value" :{
+		        			"SS":location
+		        		},
+		        	
+		        	"Action":"ADD"
+		        	}
+		        }
+		    }, function(err,data) {
+		    	if(err)
+		    		console.log("Error______"+err);
+					callback(err, data);
+		});
+}
+
 exports.updateStatus = function(userid,status,callback){
 	
 	dynamo.updateItem(
@@ -210,27 +306,7 @@ exports.insertPost = function(userid,post,callback){
 };
 var db = dbConn.getDBconnection();
 exports.getProfileInfo = function(userid,callback){
-	/*db.table('user_profile').where('user_id').eq(userid).get(function( err, data ) {
-        console.log( err, data );
-        console.log(data);
-        console.log(Object.keys(data).length === 0);
-        var obj = JSON.parse(JSON.stringify(data));
-        console.log(data.keys(obj).length === 0);
-        if(obj.length > 1){
-        	console.log( "------" );
-        }else{
-        	console.log( "!!!!!!" );
-        }
-    });*/
-	/*db.table('user_profile').having('user_id').eq(userid).scan(function(err, data) {
-		if(data === ""){
-			console.log('nodata');
-			data = "nodata";
-			callback(err,data);
-		}else if(err){
-			console.log('-------');
-			console.log(err);
-		}else{*/
+
 			dynamo.getItem({
 				"Key":{ 
 				      "user_id" : {
@@ -238,29 +314,24 @@ exports.getProfileInfo = function(userid,callback){
 				        }
 				},
 				"AttributesToGet":[
-					"bio","certification","skill","college","status","company_followed","user_followed","post"
+					"bio","certification","skill","college","status","company_followed","user_followed","post","location","job_title",
+					"degree","company"
 				],
 				"TableName":"user_profile"	
 				},
 				
 				function(err,data){
-					console.log("------"+data);
-					console.log(data);
-					console.log("------"+data);
+					
 					if(err){
 						console.log("error: "+err);
 						
 					}else if(Object.keys(data).length===0){
-						console.log("------"+data);
-						console.log(data);
-						console.log('nodata');
+			
 						data = "nodata";
 						
 					}
 					callback(err,data);
 			});
-		//}
-	//});
 }
 
 

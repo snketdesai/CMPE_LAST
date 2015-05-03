@@ -3,6 +3,10 @@ $("#saveStatus").hide();
 $('#saveCollege').hide();
 $('#saveSkill').hide();
 $('#saveCertification').hide();
+$('#saveDegree').hide();
+$('#saveCname').hide();
+$('#saveTitle').hide();
+$('#saveLocation').hide();
 //$("#saveurl").hide();
 
 $.ajax({
@@ -20,6 +24,18 @@ $.ajax({
        
        if(d.Item.college){
     	   $("#college").val(d.Item.college.SS[0]);
+       }
+       if(d.Item.location){
+    	   $("#location").val(d.Item.location.SS[0]);
+       }
+       if(d.Item.job_title){
+    	   $("#title").val(d.Item.job_title.SS[0]);
+       }
+       if(d.Item.degree){
+    	   $("#degree").val(d.Item.degree.SS[0]);
+       }
+       if(d.Item.company){
+    	   $("#cname").val(d.Item.company.SS[0]);
        }
        if(d.Item.skill){
     	   $("#skill").val(d.Item.skill.SS[0]); 
@@ -220,7 +236,134 @@ $(document).ready(function(){
 				      });
 				      
 				      //---------------------add college ends-----------------------
+
+				      $( "#editCname" ).click(function() {
+				        $("#editCname").hide();
+				        $("#saveCname").show();
+				        $("#cname").prop('disabled', false);
+				      });
+
+				      $( "#saveCname" ).click(function() {
+				        var company = $("#cname").val();
+				        var obj = new Array();
+				        obj.push(company);
+				        
+				        var companyObj = {
+				        		company : obj
+				        };
+				        $.ajax({
+				          type: "POST",
+				          url: "/company/"+$("#userid").val(),
+				          contentType: "application/json; charset=UTF-8",
+				          dataType: 'json',
+				          data: JSON.stringify(companyObj),
+				          crossDomain : true,
+				          success: function( d ) {
+				             console.log(d);
+				          }
+				        });
+				        $("#saveCname").hide();
+				        $("#editCname").show();
+				        $("#cname").prop('disabled', true);
+				      });
 				      
+				      //---------------------add company ends-----------------------  
+				      
+				      $( "#editTitle" ).click(function() {
+				        $("#editTitle").hide();
+				        $("#saveTitle").show();
+				        $("#title").prop('disabled', false);
+				      });
+
+				      $( "#saveTitle" ).click(function() {
+				        var job_title = $("#title").val();
+				        var obj = new Array();
+				        obj.push(job_title);
+				        
+				        var titleObj = {
+				        		job_title : obj
+				        };
+				        $.ajax({
+				          type: "POST",
+				          url: "/job_title/"+$("#userid").val(),
+				          contentType: "application/json; charset=UTF-8",
+				          dataType: 'json',
+				          data: JSON.stringify(titleObj),
+				          crossDomain : true,
+				          success: function( d ) {
+				             console.log(d);
+				          }
+				        });
+				        $("#saveTitle").hide();
+				        $("#editTitle").show();
+				        $("#title").prop('disabled', true);
+				      });
+				      
+				      //---------------------add job title ends----------------------- 
+				      
+				      $( "#editLocation" ).click(function() {
+				        $("#editLocation").hide();
+				        $("#saveLocation").show();
+				        $("#location").prop('disabled', false);
+				      });
+
+				      $( "#saveLocation" ).click(function() {
+				        var location = $("#location").val();
+				        var obj = new Array();
+				        obj.push(location);
+				        
+				        var locationObj = {
+				        		location : obj
+				        };
+				        $.ajax({
+				          type: "POST",
+				          url: "/location/"+$("#userid").val(),
+				          contentType: "application/json; charset=UTF-8",
+				          dataType: 'json',
+				          data: JSON.stringify(locationObj),
+				          crossDomain : true,
+				          success: function( d ) {
+				             console.log(d);
+				          }
+				        });
+				        $("#saveLocation").hide();
+				        $("#editLocation").show();
+				        $("#location").prop('disabled', true);
+				      });
+				      
+				      //---------------------add location ends----------------------- 
+				      
+				      $( "#addDegree" ).click(function() {
+				        $("#addDegree").hide();
+				        $("#saveDegree").show();
+				        $("#degree").prop('disabled', false);
+				      });
+
+				      $( "#saveDegree" ).click(function() {
+				        var degree = $("#degree").val();
+				        var obj = new Array();
+				        obj.push(degree);
+				        
+				        var degreeObj = {
+				        		degree : obj
+				        };
+				        $.ajax({
+				          type: "POST",
+				          url: "/degree/"+$("#userid").val(),
+				          contentType: "application/json; charset=UTF-8",
+				          dataType: 'json',
+				          data: JSON.stringify(degreeObj),
+				          crossDomain : true,
+				          success: function( d ) {
+				             console.log(d);
+				          }
+				        });
+				        $("#saveDegree").hide();
+				        $("#addDegree").show();
+				        $("#degree").prop('disabled', true);
+				      });
+				      
+				      //---------------------add degree ends-----------------------
 				      
 				      $( "#addSkill" ).click(function() {
 					        $("#addSkill").hide();

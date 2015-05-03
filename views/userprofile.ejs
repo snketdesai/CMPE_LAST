@@ -61,7 +61,6 @@
 
 	<!--main-->
 	<div class="container" id="main">
-		<!--row-->
 		<div class="row">
 			<div class="col-md-4 col-sm-6">
 
@@ -98,7 +97,77 @@
 				</div>
 
 			</div>
+			<div class="col-md-4 col-sm-6">
 
+				<div class="well">
+					<form class="form-horizontal" role="form">
+						<h4>Post Status</h4>
+						<div class="form-group" style="padding: 14px;">
+							<textarea id="statusText" class="form-control"
+								placeholder="Update your status"></textarea>
+						</div>
+						<button id="postStatus" class="btn btn-success pull-right"
+							type="button">Post Status</button>
+						<ul class="list-inline">
+							<li></li>
+						</ul>
+					</form>
+				</div>
+
+			</div>
+			<div class="col-md-4 col-sm-6">
+
+				<div class="well">
+					<h4>Experience</h4>
+					<form>
+						<div class="form-group">
+							<label for="cname">Company Name</label>
+							<input id="cname" type="text" class="form-control" placeholder="Enter Company Name" disabled>
+							<button id="saveCname" class="btn btn-link pull-right" type="button">save</button>
+							<button id="editCname" class="btn btn-link pull-right" type="button">edit</button>
+							<div id="ajaxName"></div>
+
+						</div>
+
+						<div class="form-group">
+							<label for="title">Job Title</label>
+							<input id="title" type="text" class="form-control" placeholder="Enter Job Title" disabled>
+							<button id="saveTitle" class="btn btn-link pull-right"
+								type="button">save</button>
+							<button id="editTitle" class="btn btn-link pull-right"
+								type="button">edit</button>
+						</div>
+						
+						<div class="form-group">
+							<label for="location">Location</label> <input id="location"
+								type="text" class="form-control" placeholder="Enter Location" disabled>
+							<button id="saveLocation" class="btn btn-link pull-right"
+								type="button">save</button>
+							<button id="editLocation" class="btn btn-link pull-right"
+								type="button">edit</button>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>	
+		<!--row-->
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						<a href="#" class="pull-right">View all</a>
+						<h4>Following Users</h4>
+					</div>
+					<div class="panel-body">
+						<ul id="listForUser" class="list-group">
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-4 col-sm-6">
 
 				<div class="well">
@@ -108,14 +177,19 @@
 							<label for="college">College</label> <input id="college"
 								type="text" class="form-control" placeholder="Enter College"
 								disabled>
-							<!--<ul id="listForCollege" class="list-group">
-                        
-
-                     </ul>-->
 							<button id="saveCollege" class="btn btn-link pull-right"
 								type="button">save</button>
 							<button id="addCollege" class="btn btn-link pull-right"
 								type="button">Add College</button>
+						</div>
+						<div class="form-group">
+							<label for="degree">Degree</label> <input id="degree"
+								type="text" class="form-control" placeholder="Enter Degree"
+								disabled>
+							<button id="saveDegree" class="btn btn-link pull-right"
+								type="button">save</button>
+							<button id="addDegree" class="btn btn-link pull-right"
+								type="button">Add Degree</button>
 						</div>
 						<div class="form-group">
 							<label for="skills">Skills</label>
@@ -153,45 +227,7 @@
 				</div>
 
 			</div>
-
-			<div class="col-md-4 col-sm-6">
-
-				<div class="well">
-					<form class="form-horizontal" role="form">
-						<h4>Post Status</h4>
-						<div class="form-group" style="padding: 14px;">
-							<textarea id="statusText" class="form-control"
-								placeholder="Update your status"></textarea>
-						</div>
-						<button id="postStatus" class="btn btn-success pull-right"
-							type="button">Post Status</button>
-						<ul class="list-inline">
-							<li></li>
-						</ul>
-					</form>
-				</div>
-
-			</div>
-
-		</div>
-		<!--/row-->
-
-		<div class="row">
-			<div class="col-md-4 col-sm-6">
-				<div class="panel panel-default ">
-					<div class="panel-heading">
-						<a href="#" class="pull-right">View all</a>
-						<h4>Following Users</h4>
-					</div>
-					<div class="panel-body">
-						<ul id="listForUser" class="list-group">
-
-
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6"></div>
+			
 			<div class="col-md-4 col-sm-6">
 				<div class="panel panel-default ">
 					<div class="panel-heading">
@@ -205,9 +241,8 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-
+		<!--/row-->
 		<!-- <div class="row">
       <div class="col-md-12"><h2>Trends</h2></div>
           <div class="col-md-6">

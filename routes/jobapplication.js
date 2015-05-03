@@ -38,9 +38,6 @@ exports.getJobApplication = function(req,res){
 		}
 		else{	
 			 console.log(data);
-			 //appdata = JSON.stringify(data);
-			 console.log("alerting data: " + data[0].job_id);
-			 //res.send(JSON.stringify(data));
 			 res.render("jobApplication",{app : data});
 		}
 	});

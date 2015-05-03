@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -66,6 +65,10 @@ app.post('/bio/:userid',profile.insertBio);
 app.post('/certification/:userid',profile.insertCertification);
 app.post('/skill/:userid',profile.insertSkill);
 app.post('/college/:userid',profile.insertCollege);
+app.post('/company/:userid',profile.insertCompany);
+app.post('/degree/:userid',profile.insertDegree);
+app.post('/job_title/:userid',profile.insertJobTitle);
+app.post('/location/:userid',profile.insertLocation);
 app.post('/status/:userid',profile.insertStatus);
 app.post('/company_followed/:userid',profile.insertCompanyFollowed);
 app.post('/user_followed',profile.insertUserFollowed);

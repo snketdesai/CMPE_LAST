@@ -73,6 +73,74 @@ exports.insertCollege = function(req,res){
 	});
 },
 
+exports.insertCompany = function(req,res){
+	var userid = req.params.userid;
+	var company = req.body.company;
+	
+	profile.updateCompany(userid,company,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while inserting data\n");
+		}
+		else{		
+			 res.writeHead(200);
+			 res.end("Record Inserted successfully");
+			
+		}
+	});
+},
+
+exports.insertDegree = function(req,res){
+	var userid = req.params.userid;
+	var degree = req.body.degree;
+	
+	profile.updateDegree(userid,degree,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while inserting data\n");
+		}
+		else{		
+			 res.writeHead(200);
+			 res.end("Record Inserted successfully");
+			
+		}
+	});
+},
+
+exports.insertJobTitle = function(req,res){
+	var userid = req.params.userid;
+	var job_title = req.body.job_title;
+	
+	profile.updateJobTitle(userid,job_title,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while inserting data\n");
+		}
+		else{		
+			 res.writeHead(200);
+			 res.end("Record Inserted successfully");
+			
+		}
+	});
+},
+
+exports.insertLocation = function(req,res){
+	var userid = req.params.userid;
+	var location = req.body.location;
+	
+	profile.updateLocation(userid,location,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while inserting data\n");
+		}
+		else{		
+			 res.writeHead(200);
+			 res.end("Record Inserted successfully");
+			
+		}
+	});
+},
+
 exports.insertStatus = function(req,res){
 	var userid = req.params.userid;
 	var status = req.body.status;
