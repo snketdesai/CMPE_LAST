@@ -119,13 +119,25 @@ $.ajax({
     success: function( d ) {
        
        if(d.Item.recommended_user){
+    	   var userfollowed = getFollowedUser($("#userid").val());
+    	   console.log("TESTING VALIDATION: " + userfollowed[1]);
+    	   var userfollowedlength = userfollowed.length;
     	   var length_of_user_recommended = d.Item.recommended_user.NS.length;
            
            for(var i=0;i<length_of_user_recommended;i++)
     	   {
-    	   		var recuser = getName(d.Item.recommended_user.NS[i]);
-    	   		var html = '<li class="list-group-item">'+recuser+'</li>';
-    	   		$('#userrec-body').append($(html));
+        	   var followinguser = false;
+   	   			var recuser = getName(d.Item.recommended_user.NS[i]);
+   	   			for(j=0; j<userfollowedlength; j++){
+   	   				if(userfollowed[j] == d.Item.recommended_user.NS[i]){
+   	   					followinguser = true;
+   	   					break;
+   	   				}
+   	   			}
+   	   			if(!followinguser){
+	    	   		var html = '<li class="list-group-item">'+recuser+'</li>';
+	    	   		$('#userrec-body').append($(html));
+   	   			}	
     	   }    
        }
     }
@@ -205,6 +217,38 @@ function getJobDetails(id){
 	});
 	
 	return data;
+}
+
+function getFollowedUser(id){
+	
+	var userfollowed;
+	
+	$.ajax({
+	    type: "GET",
+	    url: "/profile/"+id,
+	    crossDomain : true,
+	    contentType: "application/json; charset=UTF-8",
+	    dataType: 'json',
+	    async : false,
+	    success: function( d ) {
+	    	
+	    	if(d.Item.user_followed)
+		    {
+			    var length_of_user_followed = d.Item.user_followed.SS.length;
+			   
+			    for(var i=0;i<length_of_user_followed;i++){
+
+			
+			    		userfollowed =  d.Item.user_followed.SS;
+
+			    }
+		    
+		    	//return false;
+		    }
+	    }
+	});
+	
+	return userfollowed;
 }
 
 $(document).ready(function(){
