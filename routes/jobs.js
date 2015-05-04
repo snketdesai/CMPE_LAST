@@ -88,7 +88,7 @@ exports.searchJobs = function(req,res){
 	var searchTerm = req.params.searchTerm;
 	job.searchJobs(searchTerm,function(err,data){
 		if(err){
-			res.writeHead(400);
+			//res.writeHead(400);
 			res.end("Error while searching record\n");
 		}else{
 			res.send(data);
