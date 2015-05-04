@@ -80,6 +80,8 @@ app.post('/company_followed/:userid', profile.insertCompanyFollowed);
 app.post('/user_followed', profile.insertUserFollowed);
 app.get('/user/:userId/companynewsfeed', profile.getCompanyNewsFeed);
 app.post('/posts', profile.insertPost);
+app.get('/careerPath', profile.showCareerPathPage);
+app.get('/getCareerPath/:expPos',profile.getCareerPath);
 
 app.get('/portfolio', profile.getPortfolio); // portfolio page
 app.get('/profile/:userid', profile.getProfile); // profile data
