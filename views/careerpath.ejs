@@ -66,24 +66,24 @@
 		<div class="row">
 			<div class="col-md-8 col-sm-6">
 				<div class="panel panel-default">
-				<div class="panel-body">
-						
-					<form>
-					
-						<label for="sel1">Expected Position :</label>
-						 <select class="form-control" id="sel1">
-							<option>CEO</option>
-							<option>Architect</option>
-							<option>Manger</option>
-							<option>CTO</option>
-						</select>
-						<br/>
-						<button class="btn btn-success pull-right" type="button" onclick="getCareerPath()">Get Career Path</button>
-					</form>
-				
+					<div class="panel-body">
+
+						<form>
+
+							<label for="sel1">Expected Position :</label> <select
+								class="form-control" id="sel1">
+								<option>CEO</option>
+								<option>Architect</option>
+								<option>COO</option>
+								<option>CTO</option>
+							</select> <br />
+							<button class="btn btn-success pull-right" type="button"
+								onclick="getCareerPath()">Get Career Path</button>
+						</form>
+
 
 					</div>
-					</div>
+				</div>
 			</div>
 		</div>
 
@@ -93,9 +93,7 @@
 					<div class="panel-heading">
 						<h4>Recommended career path</h4>
 					</div>
-					<div class="panel-body" id="paths">
-						
-					</div>
+					<div class="panel-body" id="paths"></div>
 				</div>
 			</div>
 		</div>
@@ -117,36 +115,41 @@
 			//getAllJobs();
 
 		});
-		
-		function getCareerPath(){
+
+		function getCareerPath() {
 			$("#paths").empty();
 			var expectedPos = $("#sel1").val();
-			console.log("Position____"+expectedPos);
-			var url = '/getCareerPath/'+expectedPos;
-			$.get(url,function(data){
-				if(data.length != 0){
-					console.log(data.Paths);
-					var pathArr = data.Paths;
-					var careerPath = "";
+			console.log("Position____" + expectedPos);
+			var url = '/getCareerPath/' + expectedPos;
+			$.get(url, function(data) {
+				if (data.length != 0) {
+					console.log("Path 1_________" + data.path1);
+					console.log("Path 2_________" + data.path2);
+					var path1 = data.path1;
+					var path2 = data.path2;
+					var careerPath1 = "";
+					var careerPath2 = "";
 					var htmlOutput = "";
-					for(var i=0;i<pathArr.length;i++){
-						console.log(pathArr[i]);
-						var currPath = pathArr[i];
-						for(var j=0;j<currPath.length;j++){
-							careerPath = careerPath + currPath[j] + " -> ";
-						}
-						console.log("_______"+careerPath);
-						htmlOutput = htmlOutput + "<br/><p style='font-weight:bold;'>"+careerPath.substring(0, careerPath.length-3)+"</p>";
-						console.log(htmlOutput);
-						careerPath = "";
+
+					for (var j = 0; j < path1.length; j++) {
+						careerPath1 = careerPath1 + path1[j] + " -> ";
 					}
+					for (var k = 0; k < path2.length; k++) {
+						careerPath2 = careerPath2 + path2[k] + " -> ";
+					}
+					htmlOutput = htmlOutput
+							+ "<br/><p style='font-weight:bold;'>"
+							+ careerPath1.substring(0, careerPath1.length - 3)
+							+ "</p></br><p style='font-weight:bold;'>"+careerPath2.substring(0, careerPath2.length - 3)+"</p>";
+					console.log(htmlOutput);
+					$("#paths").append(htmlOutput);
+				} else {
+					console.log("Inside else");
+					var htmlOutput = "<p>No matching recommendation</p>";
 					$("#paths").append(htmlOutput);
 				}
-				else{
-					$("#paths").append("No matching recommendation");
-				}
-				
-			}); 
+
+			});
 		}
 	</script>
 </body>

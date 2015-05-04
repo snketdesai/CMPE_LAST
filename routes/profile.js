@@ -248,7 +248,7 @@ exports.getCareerPath = function(req, res) {
 	var MongoClient = require('mongodb').MongoClient;
 	MongoClient
 			.connect(
-					'mongodb://ds031912.mongolab.com:31912/cmpe282-linkedin',
+					'mongodb://ds031902.mongolab.com:31902/cmpe282prjt',
 					function(err, db) {
 						console.log("inside connect");
 						if (err) {
@@ -256,10 +256,11 @@ exports.getCareerPath = function(req, res) {
 							throw err;
 						}
 						
-						db.authenticate("cmpe282", "cmpe282", function(err, rows) {
+						db.authenticate("sambu8865", "9may1989", function(err, rows) {
 							  if(!err){
-								  var collection = db.collection('CareerPath');
-								  collection.findOne({_id: expPos},function(err, doc) {
+								  var collection = db.collection('collection1');
+								 
+								  collection.findOne({position: expPos},function(err, doc) {
 										console.log("Doc_____" + doc);
 										if (doc != null) {
 											careerData = JSON.parse(JSON.stringify(doc));
