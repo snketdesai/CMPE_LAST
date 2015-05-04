@@ -120,8 +120,10 @@ $.ajax({
        
        if(d.Item.recommended_user){
     	   var userfollowed = getFollowedUser($("#userid").val());
-    	   console.log("TESTING VALIDATION: " + userfollowed[1]);
+    	  // console.log("TESTING VALIDATION: " + userfollowed[1]);
+    	   if(userfollowed){
     	   var userfollowedlength = userfollowed.length;
+    	   }
     	   var length_of_user_recommended = d.Item.recommended_user.NS.length;
            
            for(var i=0;i<length_of_user_recommended;i++)
@@ -153,8 +155,10 @@ $.ajax({
        
        if(d.Item.recommended_job){
     	   var jobapplied = getJobApplied($("#userid").val());
-       	   console.log("TESTEING JOB REC VALIDATION :::: " + jobapplied.length);
+       	   //console.log("TESTEING JOB REC VALIDATION :::: " + jobapplied.length);
+    	   if(jobapplied){
        	   var jobappliedlength = jobapplied.length;
+    	   }
 	       var length_of_job_recommended = d.Item.recommended_job.SS.length;
 	       
 	       
@@ -170,7 +174,7 @@ $.ajax({
 	    	    	}
 	    	    }
 		   		if(!appliedforjob){
-		   		var html = '<li class="list-group-item">Company: '+recjob.company+'<br><br> Position: '+recjob.position+'<br><br> Description: '+recjob.description+'</li>';
+		   		var html = '<li class="list-group-item">Company: '+recjob.company+'<br><br> Position: '+recjob.position+'</li>';
 		   		$('#jobrec-body').append($(html));
 		   		}
 		   } 
