@@ -43,6 +43,23 @@ exports.getJobApplication = function(req,res){
 	});
 }
 
+exports.getJobApplicationAJAX = function(req,res){
+	console.log("Job Application requested");
+	//var userId = req.session.userId;
+	var userId = req.params.userId;
+	console.log("UserId: "+ userId);
+	user.getJobApplication(userId,function(err,data){
+		if(err){
+			  res.writeHead(400);
+			  res.end("Error while getting your job application. \n");
+		}
+		else{	
+			 console.log(data);
+			 res.send(data);
+		}
+	});
+}
+
 exports.updateJobStatus = function(req,res){
 	console.log("Job status update requested");
 	var jobId = req.params.jobId;

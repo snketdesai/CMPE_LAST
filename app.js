@@ -63,6 +63,7 @@ app.get('/jobrec/:userId', rec.getRecommendedJobs);
 
 app.post('/application', jobapp.postJobApplication);
 app.get('/userapplication/:userId', jobapp.getJobApplication);
+app.get('/userapplicationAJAX/:userId', jobapp.getJobApplicationAJAX);
 app.post('/updatejobstatus/:jobId/:userId', jobapp.updateJobStatus);
 app.get('/getName/:userId', user.getName);
 

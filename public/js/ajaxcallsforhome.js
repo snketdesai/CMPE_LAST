@@ -152,14 +152,27 @@ $.ajax({
     success: function( d ) {
        
        if(d.Item.recommended_job){
+    	   var jobapplied = getJobApplied($("#userid").val());
+       	   console.log("TESTEING JOB REC VALIDATION :::: " + jobapplied.length);
+       	   var jobappliedlength = jobapplied.length;
 	       var length_of_job_recommended = d.Item.recommended_job.SS.length;
+	       
 	       
 	       for(var i=0;i<length_of_job_recommended;i++)
 		   {
-		   		var recjob = getJobDetails(d.Item.recommended_job.SS[i]);
-		   		console.log('recjob:' +recjob);
+	    	   var appliedforjob = false;
+	    	    var recjob = getJobDetails(d.Item.recommended_job.SS[i]);
+	    	    console.log('recjob:' +JSON.stringify(recjob));
+	    	    for(var j=0; j<jobappliedlength; j++){
+	    	    	if(jobapplied[j].job_id == recjob.jobid){
+	    	    		appliedforjob = true;
+	    	    		break;
+	    	    	}
+	    	    }
+		   		if(!appliedforjob){
 		   		var html = '<li class="list-group-item">Company: '+recjob.company+'<br><br> Position: '+recjob.position+'<br><br> Description: '+recjob.description+'</li>';
 		   		$('#jobrec-body').append($(html));
+		   		}
 		   } 
        }
       
@@ -204,6 +217,7 @@ function getJobDetails(id){
 	    	console.log("Printing D inside getJobDetails" + JSON.stringify(d));
 	    	data = {
 	    			position: d.jobTitle,
+	    			jobid: d.jobId,
 	    			description: d.jobDescription,
 	    			company: d.companyName
 	    	};
@@ -249,6 +263,31 @@ function getFollowedUser(id){
 	});
 	
 	return userfollowed;
+}
+
+function getJobApplied(id){
+	
+	var jobappdata;
+	
+	$.ajax({
+	    type: "GET",
+	    url: "/userapplicationAJAX/"+id,
+	    crossDomain : true,
+	    contentType: "application/json; charset=UTF-8",
+	    dataType: 'json',
+	    async : false,
+	    success: function( d ) {
+	    	
+	    	if(d)
+		    {
+			    jobappdata = d;
+		    
+		    	//return false;
+		    }
+	    }
+	});
+	
+	return jobappdata;
 }
 
 $(document).ready(function(){
