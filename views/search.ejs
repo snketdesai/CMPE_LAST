@@ -88,8 +88,8 @@
 									<div class="panel-body">
 										<form id="companyS" class="form-inline">
 											<div id="autocomp" class="form-group">
-												<label for="cName" style="margin-right: 80px;">Company
-													Name</label> <input type="text" class="form-control" id="cName"
+												<label for="companyName" style="margin-right: 80px;">Company
+													Name</label> <input type="text" class="form-control" id="companyName"
 													placeholder="Company Name">
 											</div>
 											<button type="button" class="btn btn-default"
@@ -145,12 +145,12 @@
 	<!-- script references -->
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$("#cName").autocomplete({
+		$("#companyName").autocomplete({
 			delay: 500,
 			minLength: 3,
 			source: function(request, response) {
 				var autocompleteQuery = {
-			    	query : $("#cName").val()
+			    	query : $("#companyName").val()
 	    	    };
 	    	    console.log(autocompleteQuery);
 				$.ajax({
@@ -176,7 +176,7 @@
 		});
       
       $( "#companySearch" ).click(function() {
-          var name = $('#cName').val();
+          var name = $('#companyName').val();
           console.log(" search here "+name);
           var companyname = {
         	  name : name

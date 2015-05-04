@@ -253,7 +253,7 @@ $(document).ready(function(){
 				        };
 				        $.ajax({
 				          type: "POST",
-				          url: "/company/"+$("#userid").val(),
+				          url: "/companyone/"+$("#userid").val(),
 				          contentType: "application/json; charset=UTF-8",
 				          dataType: 'json',
 				          data: JSON.stringify(companyObj),

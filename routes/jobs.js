@@ -91,7 +91,6 @@ exports.searchJobs = function(req,res){
 			res.writeHead(400);
 			res.end("Error while searching record\n");
 		}else{
-			res.writeHead(200);
 			res.send(data);
 		}
 	});
