@@ -52,7 +52,7 @@ exports.getPoolInstance = function(){
 
 			user     : '',
 
-			password : 'cmpe282shim',
+			password : '',
 
 			port : '3306',
 
