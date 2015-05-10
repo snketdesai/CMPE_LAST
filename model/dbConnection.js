@@ -5,7 +5,7 @@ var dynomoDb;
 var pool;
 
 var redis = require("redis");
-var client = redis.createClient(6379,"");
+var client = redis.createClient(6379,"127.0.0.1");
 //redis-come282.qqsr0p.0001.use1.cache.amazonaws.com
 
 function getRedisConnection(){
