@@ -56,7 +56,7 @@ exports.getPoolInstance = function(){
 
 			port : '',
 
-			database : 'linkedin_prototype'
+			database : ''
 
 		});
 		return pool;
