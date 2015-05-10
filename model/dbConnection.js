@@ -48,7 +48,7 @@ exports.getPoolInstance = function(){
 	{
 		pool  = mysql.createPool({
 
-			host     : 'cmpe282lab.cckbiaous4u7.us-west-1.rds.amazonaws.com',
+			host     : '',
 
 			user     : 'CMPE282',
 
