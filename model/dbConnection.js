@@ -54,7 +54,7 @@ exports.getPoolInstance = function(){
 
 			password : '',
 
-			port : '3306',
+			port : '',
 
 			database : 'linkedin_prototype'
 
