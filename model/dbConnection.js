@@ -50,7 +50,7 @@ exports.getPoolInstance = function(){
 
 			host     : '',
 
-			user     : 'CMPE282',
+			user     : '',
 
 			password : 'cmpe282shim',
 
